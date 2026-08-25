@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import { X, ArrowRight, Check } from 'lucide-react';
 import { getIcon } from '../../utils/icons.js';
-import { useContent } from '../../i18n/LanguageContext.jsx';
 import styles from './ServiceModal.module.css';
 
 /**
- * Modal premium de detalhes do serviço.
- * Recebe um "service" já mesclado (estrutura + cópia do idioma ativo).
+ * Modal premium de detalhes do serviço (ficha técnica de carga).
+ * Recebe um "service" da data/servicos.js.
  */
 export function ServiceModal({ service, onClose, onQuote }) {
-  const pt = useContent();
-
   useEffect(() => {
     if (!service) return undefined;
     const onKey = (e) => {
@@ -37,7 +34,7 @@ export function ServiceModal({ service, onClose, onQuote }) {
         aria-labelledby="service-modal-title"
         onClick={(e) => e.stopPropagation()}
       >
-        <button type="button" className={styles.close} onClick={onClose} aria-label={pt.ui.close}>
+        <button type="button" className={styles.close} onClick={onClose} aria-label="Fechar">
           <X size={20} strokeWidth={2.2} />
         </button>
 
@@ -61,8 +58,8 @@ export function ServiceModal({ service, onClose, onQuote }) {
           </ul>
         )}
 
-        <button type="button" className={styles.cta} onClick={() => onQuote(service.cargo)}>
-          {pt.ui.requestQuote}
+        <button type="button" className={styles.cta} onClick={() => onQuote(service.title)}>
+          Solicitar cotação
           <ArrowRight size={17} strokeWidth={2.4} aria-hidden="true" />
         </button>
       </div>

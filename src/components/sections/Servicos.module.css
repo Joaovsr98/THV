@@ -20,7 +20,7 @@
     border-color 0.22s var(--ease);
 }
 
-.card.red {
+.card.cyan {
   border-top-color: var(--color-red-600);
 }
 
@@ -44,7 +44,7 @@
   border-color: var(--color-blue-500);
 }
 
-.red:hover {
+.cyan:hover {
   border-color: var(--color-red-500);
 }
 
@@ -70,7 +70,7 @@
   transform: scale(1.06);
 }
 
-.red .iconWrap {
+.cyan .iconWrap {
   background: var(--color-red-600);
 }
 
@@ -140,7 +140,7 @@
   transition: gap 0.22s var(--ease), color 0.22s var(--ease);
 }
 
-.red .cta {
+.cyan .cta {
   color: var(--color-red-600);
 }
 

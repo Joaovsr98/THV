@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { getIcon } from '../../utils/icons.js';
-import { useContent } from '../../i18n/LanguageContext.jsx';
 import { servicos } from '../../data/servicos.js';
 import { prefillCargo } from '../../utils/quotePrefill.js';
 import SectionTitle from '../ui/SectionTitle.jsx';
 import ServiceModal from './ServiceModal.jsx';
 import styles from './Servicos.module.css';
 
-export function Servicos() {
-  const pt = useContent();
-  const [modal, setModal] = useState(null);
+/* ---------------------------------------------------------------------
+   SERVIÇOS — THV. Reaproveita o motor da base (cards + hover + modal).
+   Conteúdo autossuficiente (data/servicos.js). Cada card é uma ficha de
+   carga; "Ver detalhes" abre o modal com a ficha técnica.
+   --------------------------------------------------------------------- */
 
-  const cargoFor = (s) => (s.cargoIndex != null ? pt.quote.cargoOptions[s.cargoIndex] : '');
+export function Servicos() {
+  const [modal, setModal] = useState(null);
 
   const goToQuote = (cargo) => {
     prefillCargo(cargo);
@@ -23,31 +25,29 @@ export function Servicos() {
     <section id="servicos" className="section section--tint">
       <div className="container">
         <SectionTitle
-          eyebrow={pt.services.eyebrow}
-          title={pt.services.title}
-          subtitle={pt.services.subtitle}
+          eyebrow="O que transportamos"
+          title="Cada aço tem o seu método"
+          subtitle="Cargas completas e fracionadas controladas para toda a cadeia siderúrgica."
           align="center"
         />
 
         <div className={styles.grid}>
           {servicos.map((s, i) => {
             const Icon = getIcon(s.icon);
-            const item = pt.services.items[s.id];
-            const cargo = cargoFor(s);
             return (
               <article
                 key={s.id}
                 className={`${styles.card} ${styles[s.accent]}`}
                 data-reveal
                 data-reveal-delay={(i % 3) + 1}
-                onClick={() => goToQuote(cargo)}
+                onClick={() => goToQuote(s.title)}
               >
                 <span className={styles.iconWrap}>
                   <Icon size={22} strokeWidth={2} />
                 </span>
-                <span className={styles.subtitle}>{item.subtitle}</span>
-                <h3 className={styles.title}>{item.title}</h3>
-                <p className={styles.text}>{item.text}</p>
+                <span className={styles.subtitle}>{s.subtitle}</span>
+                <h3 className={styles.title}>{s.title}</h3>
+                <p className={styles.text}>{s.text}</p>
 
                 <div className={styles.actions}>
                   <a
@@ -55,10 +55,10 @@ export function Servicos() {
                     className={styles.cta}
                     onClick={(e) => {
                       e.stopPropagation();
-                      prefillCargo(cargo);
+                      prefillCargo(s.title);
                     }}
                   >
-                    {pt.ui.requestQuote}
+                    Solicitar cotação
                     <ArrowRight size={15} strokeWidth={2.4} aria-hidden="true" />
                   </a>
                   <button
@@ -66,10 +66,10 @@ export function Servicos() {
                     className={styles.detail}
                     onClick={(e) => {
                       e.stopPropagation();
-                      setModal({ ...s, ...item, cargo });
+                      setModal(s);
                     }}
                   >
-                    {pt.ui.viewDetails}
+                    Ver detalhes
                     <ArrowRight size={13} strokeWidth={2.2} aria-hidden="true" />
                   </button>
                 </div>

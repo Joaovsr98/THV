@@ -22,6 +22,15 @@ import {
   PiggyBank,
   Target,
   Package,
+  Ruler,
+  Layers,
+  Shapes,
+  Cylinder,
+  Disc3,
+  Factory,
+  MapPin,
+  Radar,
+  Route,
 } from 'lucide-react';
 
 export const iconMap = {
@@ -40,6 +49,15 @@ export const iconMap = {
   PiggyBank,
   Target,
   Package,
+  Ruler,
+  Layers,
+  Shapes,
+  Cylinder,
+  Disc3,
+  Factory,
+  MapPin,
+  Radar,
+  Route,
 };
 
 /** Retorna o componente de ícone pelo nome, com fallback seguro. */
