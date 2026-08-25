@@ -11,6 +11,8 @@ import MapaBrasil from './components/sections/MapaBrasil.jsx';
 import Seguranca from './components/sections/Seguranca.jsx';
 import Frota from './components/sections/Frota.jsx';
 import Responsabilidade from './components/sections/Responsabilidade.jsx';
+import Cotacao from './components/sections/Cotacao.jsx';
+import Contato from './components/sections/Contato.jsx';
 
 /* ---------------------------------------------------------------------
    Construção em andamento. Só entram no ar as seções já vestidas com a
@@ -38,6 +40,8 @@ export default function App() {
         <Seguranca />
         <Frota />
         <Responsabilidade />
+        <Cotacao />
+        <Contato />
       </main>
       <Footer />
     </>

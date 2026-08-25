@@ -1,138 +1,39 @@
-import { MessageCircle, Phone, Mail, Instagram, Linkedin, MapPin, ExternalLink } from 'lucide-react';
-import { useContent } from '../../i18n/LanguageContext.jsx';
-import { empresa } from '../../data/empresa.js';
-import {
-  whatsappLink,
-  telLink,
-  mailLink,
-  mapEmbedUrl,
-  mapOpenUrl,
-} from '../../utils/contactLinks.js';
-import SectionTitle from '../ui/SectionTitle.jsx';
+import { Mail, ArrowRight } from 'lucide-react';
 import styles from './Contato.module.css';
 
+/* ---------------------------------------------------------------------
+   CONTATO — THV. Só o canal confirmado na auditoria (e-mail). Telefone,
+   WhatsApp, endereço e redes entram quando confirmados com a empresa.
+   --------------------------------------------------------------------- */
+
+const EMAIL = 'thvmtz@thv.com.br';
+
 export function Contato() {
-  const pt = useContent();
-  const { contact } = pt;
-
-  const channels = [
-    {
-      icon: MessageCircle,
-      label: contact.labels.whatsapp,
-      value: empresa.whatsappDisplay,
-      href: whatsappLink(pt.whatsappFloat.message),
-      external: true,
-      accent: 'whatsapp',
-    },
-    {
-      icon: MessageCircle,
-      label: contact.labels.whatsappAr,
-      value: empresa.whatsappArDisplay,
-      href: whatsappLink(pt.whatsappFloat.message, empresa.whatsappArRaw),
-      external: true,
-      accent: 'whatsapp',
-    },
-    {
-      icon: Phone,
-      label: contact.labels.phone,
-      value: empresa.telDisplay,
-      href: telLink(),
-      accent: 'blue',
-    },
-    {
-      icon: Phone,
-      label: contact.labels.matrizPhone,
-      value: empresa.matrizTelDisplay,
-      href: telLink(empresa.matrizTelRaw),
-      accent: 'blue',
-    },
-    {
-      icon: Mail,
-      label: contact.labels.email,
-      value: empresa.email,
-      href: mailLink('Cotação de transporte'),
-      accent: 'red',
-    },
-    {
-      icon: Instagram,
-      label: contact.labels.instagram,
-      value: empresa.instagramUser,
-      href: empresa.instagramUrl,
-      external: true,
-      accent: 'blue',
-    },
-    {
-      icon: Linkedin,
-      label: contact.labels.linkedin,
-      value: '/mondelgroup',
-      href: empresa.linkedinUrl,
-      external: true,
-      accent: 'blue',
-    },
-    {
-      icon: MapPin,
-      label: contact.labels.address,
-      value: empresa.enderecoPrincipal,
-      href: mapOpenUrl(),
-      external: true,
-      accent: 'red',
-    },
-  ];
-
   return (
-    <section id="contato" className="section section--tint">
-      <div className="container">
-        <SectionTitle
-          eyebrow={contact.eyebrow}
-          title={contact.title}
-          subtitle={contact.subtitle}
-        />
-
-        <div className={styles.grid}>
-          <div className={styles.channels}>
-            {channels.map((c, i) => {
-              const Icon = c.icon;
-              return (
-                <a
-                  key={i}
-                  href={c.href}
-                  className={`${styles.channel} ${styles[c.accent]}`}
-                  data-reveal
-                  data-reveal-delay={(i % 3) + 1}
-                  {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                >
-                  <span className={styles.channelIcon}>
-                    <Icon size={22} strokeWidth={2} />
-                  </span>
-                  <span className={styles.channelBody}>
-                    <span className={styles.channelLabel}>{c.label}</span>
-                    <span className={styles.channelValue}>{c.value}</span>
-                  </span>
-                  <ExternalLink className={styles.ext} size={16} aria-hidden="true" />
-                </a>
-              );
-            })}
-          </div>
-
-          <div className={styles.mapWrap} data-reveal>
-            <iframe
-              className={styles.map}
-              src={mapEmbedUrl()}
-              title={contact.mapTitle}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <a
-              href={mapOpenUrl()}
-              className={styles.mapLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {contact.mapLink} <ExternalLink size={14} />
-            </a>
-          </div>
+    <section id="contato" className={styles.section}>
+      <div className={`container ${styles.inner}`}>
+        <div data-reveal>
+          <span className={styles.eyebrow}>
+            <i className={styles.tick} aria-hidden="true" />
+            Contato
+          </span>
+          <h2 className={styles.title}>Fale com a THV</h2>
+          <p className={styles.lead}>
+            Estamos prontos para atender a sua operação. Envie sua mensagem e retornaremos o mais
+            breve possível.
+          </p>
         </div>
+
+        <a className={styles.mailCard} href={`mailto:${EMAIL}`} data-reveal>
+          <span className={styles.mailIcon}>
+            <Mail size={22} strokeWidth={2} aria-hidden="true" />
+          </span>
+          <span className={styles.mailBody}>
+            <span className={styles.mailLabel}>E-mail</span>
+            <span className={styles.mailValue}>{EMAIL}</span>
+          </span>
+          <ArrowRight size={20} strokeWidth={2.2} className={styles.mailArrow} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );
