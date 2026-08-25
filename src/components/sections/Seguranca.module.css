@@ -6,7 +6,7 @@
 
 .section {
   position: relative;
-  padding-block: var(--space-2xl);
+  padding-block: clamp(3.25rem, 6vw, 4.25rem);
   background: linear-gradient(180deg, #0a1026 0%, #0c1330 100%);
   color: #fff;
   overflow: hidden;
