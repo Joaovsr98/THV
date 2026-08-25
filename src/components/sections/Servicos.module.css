@@ -137,19 +137,16 @@
   font-size: 0.82rem;
   letter-spacing: 0.01em;
   color: var(--color-blue-700);
-  transition: gap 0.22s var(--ease), color 0.22s var(--ease);
+  transition: color 0.22s var(--ease);
 }
 
 .cyan .cta {
   color: var(--color-red-600);
 }
 
+/* Só transform no ícone (não altera largura -> sem reflow/tremor) */
 .cta svg {
   transition: transform 0.22s var(--ease);
-}
-
-.card:hover .cta {
-  gap: 0.55rem;
 }
 
 .card:hover .cta svg {
@@ -166,12 +163,19 @@
   font-size: 0.76rem;
   color: var(--color-text-soft);
   cursor: pointer;
-  transition: color 0.22s var(--ease), gap 0.22s var(--ease);
+  transition: color 0.22s var(--ease);
+}
+
+.detail svg {
+  transition: transform 0.22s var(--ease);
 }
 
 .detail:hover {
   color: var(--color-ink);
-  gap: 0.5rem;
+}
+
+.detail:hover svg {
+  transform: translateX(2px);
 }
 
 @media (max-width: 1100px) {
