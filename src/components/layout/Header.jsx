@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, FileText } from 'lucide-react';
-import { useContent } from '../../i18n/LanguageContext.jsx';
 import { useScrolled } from '../../hooks/useMediaQuery.js';
 import Logo from '../ui/Logo.jsx';
 import Button from '../ui/Button.jsx';
 import styles from './Header.module.css';
 
+/* ---------------------------------------------------------------------
+   HEADER — THV. Nav self-contained com as seções já publicadas. Novos
+   itens (Serviços já existe; Frota, Atuação/Mapa, Contato) entram aqui
+   conforme cada seção é reconstruída.
+   --------------------------------------------------------------------- */
+
+const NAV = [
+  { href: '#inicio', label: 'Início' },
+  { href: '#historia', label: 'História' },
+  { href: '#servicos', label: 'Serviços' },
+];
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const scrolled = useScrolled(24);
-  const pt = useContent();
 
   // Trava o scroll do body quando o menu mobile está aberto.
   useEffect(() => {
@@ -26,8 +36,8 @@ export function Header() {
       <div className={`container ${styles.inner}`}>
         <Logo variant={scrolled ? 'dark' : 'light'} />
 
-        <nav className={styles.navDesktop} aria-label={pt.ui.mainMenu}>
-          {pt.nav.map((item) => (
+        <nav className={styles.navDesktop} aria-label="Menu principal">
+          {NAV.map((item) => (
             <a key={item.href} href={item.href} className={styles.link}>
               {item.label}
             </a>
@@ -43,7 +53,7 @@ export function Header() {
         <button
           className={styles.burger}
           onClick={() => setOpen((v) => !v)}
-          aria-label={open ? pt.ui.menuClose : pt.ui.menuOpen}
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
@@ -52,15 +62,15 @@ export function Header() {
 
       {/* Menu mobile */}
       <div className={`${styles.mobilePanel} ${open ? styles.mobileOpen : ''}`}>
-        <nav className={styles.navMobile} aria-label={pt.ui.mobileMenu}>
-          {pt.nav.map((item) => (
+        <nav className={styles.navMobile} aria-label="Menu">
+          {NAV.map((item) => (
             <a key={item.href} href={item.href} className={styles.mobileLink} onClick={close}>
               {item.label}
             </a>
           ))}
         </nav>
         <Button href="#cotacao" variant="primary" size="lg" icon={FileText} onClick={close}>
-          {pt.hero.ctaPrimary}
+          Solicitar cotação
         </Button>
       </div>
       {open && <button className={styles.overlay} aria-hidden="true" tabIndex={-1} onClick={close} />}

@@ -6,15 +6,18 @@ import Footer from './components/layout/Footer.jsx';
 
 import Hero from './components/sections/Hero.jsx';
 import Timeline from './components/sections/Timeline.jsx';
-import Sobre from './components/sections/Sobre.jsx';
 import Servicos from './components/sections/Servicos.jsx';
-import Processo from './components/sections/Processo.jsx';
-import Frota from './components/sections/Frota.jsx';
-import Galeria from './components/sections/Galeria.jsx';
-import RedeEscritorios from './components/sections/RedeEscritorios.jsx';
-import FAQ from './components/sections/FAQ.jsx';
-import Cotacao from './components/sections/Cotacao.jsx';
-import Contato from './components/sections/Contato.jsx';
+
+/* ---------------------------------------------------------------------
+   Construção em andamento. Só entram no ar as seções já vestidas com a
+   identidade THV. As demais (base da Mondel) ficam fora do render até
+   serem reconstruídas, para não exibir conteúdo/dados de outra empresa.
+
+   Ordem-alvo da narrativa:
+   Hero ✓ · A THV (Sobre) · História (Timeline ✓) · Serviços ✓ ·
+   Força × Precisão · Mapa do Brasil · Frota · Segurança & Tecnologia ·
+   Responsabilidade · Processo · Cotação · Contato
+   --------------------------------------------------------------------- */
 
 export default function App() {
   const { lang } = useLang();
@@ -26,15 +29,7 @@ export default function App() {
       <main>
         <Hero />
         <Timeline />
-        <Sobre />
         <Servicos />
-        <Processo />
-        <Frota />
-        <Galeria />
-        <RedeEscritorios />
-        <FAQ />
-        <Cotacao />
-        <Contato />
       </main>
       <Footer />
     </>
