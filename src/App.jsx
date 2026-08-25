@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer.jsx';
 import Hero from './components/sections/Hero.jsx';
 import Timeline from './components/sections/Timeline.jsx';
 import Servicos from './components/sections/Servicos.jsx';
+import MapaBrasil from './components/sections/MapaBrasil.jsx';
 
 /* ---------------------------------------------------------------------
    Construção em andamento. Só entram no ar as seções já vestidas com a
@@ -30,6 +31,7 @@ export default function App() {
         <Hero />
         <Timeline />
         <Servicos />
+        <MapaBrasil />
       </main>
       <Footer />
     </>
