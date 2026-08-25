@@ -1,0 +1,317 @@
+/* =====================================================================
+   HERO — nova linguagem de marca (Manual de Identidade Digital)
+   Navy dominante · cartografia sutil · linha-rota vermelha escassa ·
+   display Space Grotesk · dados em mono. Sem loops infinitos.
+   ===================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 92svh; /* deixa a próxima seção "espiar" — antipadrão do paredão */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background:
+    radial-gradient(115% 90% at 18% 28%, rgba(46, 111, 203, 0.16), transparent 55%),
+    linear-gradient(158deg, #060f24 0%, #0a1b3d 52%, #0e2350 100%);
+  padding-top: var(--header-h);
+}
+
+/* ---------- Fundo cartográfico ---------- */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Foto da operação nos Andes como marca d'água: desfocada e discreta,
+   por baixo da cartografia. O inset negativo + scale evitam que o blur
+   deixe as bordas transparentes. */
+.photo {
+  position: absolute;
+  inset: -3%;
+  background: url('/images/andes-inverno.webp') center 42% / cover no-repeat;
+  filter: blur(3px) saturate(0.75);
+  transform: scale(1.04);
+  opacity: 0.5;
+}
+
+/* Véu navy por cima da foto — segura o contraste do texto do Hero */
+.photoScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(6, 15, 36, 0.92) 0%,
+    rgba(7, 19, 44, 0.78) 38%,
+    rgba(10, 27, 61, 0.42) 72%,
+    rgba(14, 35, 80, 0.28) 100%
+  );
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contours path {
+  fill: none;
+  stroke: var(--color-ice-bright);
+  stroke-width: 1;
+  opacity: 0.1;
+}
+
+/* Linha-rota — o fio vermelho da marca (evento, não textura) */
+.route {
+  fill: none;
+  stroke: var(--color-red-600);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 2600;
+  stroke-dashoffset: 0;
+  filter: drop-shadow(0 0 5px rgba(216, 30, 39, 0.2));
+  animation: drawRoute 2.1s var(--ease-out-soft) 0.25s both;
+}
+
+/* Pontos ao longo da rota — pulso extremamente discreto */
+.points circle {
+  fill: var(--color-red-600);
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 3px rgba(216, 30, 39, 0.4));
+  animation: ptPulse 3.6s ease-in-out infinite;
+}
+
+.points circle:nth-child(2) {
+  animation-delay: 1.2s;
+}
+.points circle:nth-child(3) {
+  animation-delay: 2.2s;
+}
+
+@keyframes ptPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.12);
+  }
+}
+
+/* Brilho no destino — acende quando o caminhão chega */
+.destGlow {
+  fill: var(--color-red-500);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 6px rgba(216, 30, 39, 0.7));
+  animation: destArrive 18s ease-out infinite;
+}
+
+@keyframes destArrive {
+  0%,
+  60% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  64% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 0.3;
+    transform: scale(1.7);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* Caminhão minimalista */
+.truck {
+  opacity: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+
+.truckShape {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.truckBox,
+.truckCab {
+  fill: #fff;
+}
+
+.truckWheel {
+  fill: var(--color-navy-950);
+  stroke: #fff;
+  stroke-width: 0.7;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 92% 82% at 42% 34%, transparent 40%, rgba(6, 12, 26, 0.6) 100%);
+}
+
+/* ---------- Conteúdo ---------- */
+.inner {
+  position: relative;
+  padding-block: var(--space-xl) var(--space-2xl);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ice);
+  animation: fadeUp 0.7s var(--ease) both;
+}
+
+.title {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: #fff;
+  max-width: 16ch;
+  margin-top: 1.9rem;
+  text-wrap: balance;
+  animation: fadeUp 0.7s var(--ease) 0.08s both;
+}
+
+.subtitle {
+  margin-top: 1.7rem;
+  max-width: 50ch;
+  font-size: var(--fs-lead);
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.72);
+  animation: fadeUp 0.7s var(--ease) 0.16s both;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  animation: fadeUp 0.7s var(--ease) 0.24s both;
+}
+
+/* ---------- Faixa de dados (mono) ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: clamp(1.4rem, 4vw, 3.4rem);
+  margin-top: 3.4rem;
+  padding-top: 1.7rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  animation: fadeUp 0.7s var(--ease) 0.32s both;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.statLabel {
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Scroll cue ---------- */
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 1.4rem;
+  transform: translateX(-50%);
+  animation: floatY 2.6s ease-in-out infinite;
+}
+
+.mouse {
+  display: block;
+  width: 22px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  position: relative;
+}
+
+.wheel {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 7px;
+  background: #fff;
+  border-radius: 2px;
+  animation: floatY 1.6s ease-in-out infinite;
+}
+
+/* ---------- Animações locais ---------- */
+@keyframes drawRoute {
+  from {
+    stroke-dashoffset: 2600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nodeIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 620px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 1rem;
+  }
+  .scroll {
+    display: none;
+  }
+  /* No celular a rota/caminhão saem — no viewport estreito a linha
+     ficava cortada e confusa. Mantemos só o fundo navy + cartografia. */
+  .route,
+  .points,
+  .destGlow,
+  .truck {
+    display: none;
+  }
+}

@@ -1,0 +1,78 @@
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* Linha conectora (desktop) */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--color-gray-300) 0 10px,
+    transparent 10px 20px
+  );
+  z-index: 0;
+}
+
+.step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--color-blue-700);
+  color: var(--color-blue-700);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-bottom: 1.1rem;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.step:hover .num {
+  background: var(--color-blue-700);
+  color: #fff;
+}
+
+.title {
+  font-size: 1.18rem;
+}
+
+.text {
+  margin-top: 0.5rem;
+  color: var(--color-text-soft);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
+  .steps::before {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}

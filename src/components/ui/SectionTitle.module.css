@@ -1,0 +1,33 @@
+.head {
+  max-width: 720px;
+  margin-bottom: var(--space-lg);
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.center :global(.eyebrow) {
+  justify-content: center;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  margin-top: 0.9rem;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: var(--fs-lead);
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+.light .title {
+  color: #fff;
+}
+
+.light .subtitle {
+  color: rgba(255, 255, 255, 0.72);
+}

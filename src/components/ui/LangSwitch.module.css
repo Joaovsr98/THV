@@ -1,0 +1,96 @@
+.wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.lang {
+  position: relative;
+  padding: 0.2rem 0.05rem;
+  color: var(--color-text-soft);
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+
+.lang:hover {
+  color: var(--color-ink);
+}
+
+/* Idioma ativo — sublinhado vermelho escasso */
+.active {
+  color: var(--color-ink);
+  font-weight: 600;
+  cursor: default;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-red-600);
+}
+
+.sep {
+  color: var(--color-gray-300);
+  user-select: none;
+}
+
+/* ---------- Variante clara (sobre fundo escuro) ---------- */
+.light .lang {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.light .lang:hover {
+  color: #fff;
+}
+
+.light .active {
+  color: #fff;
+}
+
+.light .sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ---------- Aviso "Versão em breve" ---------- */
+.notice {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: var(--color-ink);
+  padding: 0.4rem 0.65rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+}
+
+.notice::before {
+  content: '';
+  position: absolute;
+  right: 14px;
+  bottom: 100%;
+  border: 5px solid transparent;
+  border-bottom-color: var(--color-ink);
+}
+
+.noticeShow {
+  opacity: 1;
+  transform: translateY(0);
+}

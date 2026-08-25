@@ -1,0 +1,84 @@
+.float {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 90;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-whatsapp);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s var(--ease), background-color 0.25s var(--ease);
+}
+
+.float:hover {
+  transform: scale(1.06);
+  background: var(--color-whatsapp-dark);
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pulseRing 2.4s ease-out infinite;
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+}
+
+.tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--color-ink);
+}
+
+.float:hover .tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 620px) {
+  .tooltip {
+    display: none;
+  }
+  .float {
+    width: 50px;
+    height: 50px;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    /* Contorno para separar o botão do conteúdo atrás no mobile */
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4), 0 0 0 4px rgba(6, 12, 26, 0.35);
+  }
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,227 @@
+.card {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  background: var(--surface-card);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.8rem, 4vw, 3.2rem);
+  box-shadow: var(--shadow-md);
+}
+
+.title {
+  font-size: var(--fs-h2);
+  margin-top: 0.9rem;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  color: var(--color-text-soft);
+  line-height: 1.6;
+}
+
+.privacy {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+}
+
+.privacy svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-blue-500);
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-ink);
+}
+
+.req {
+  color: var(--color-red-600);
+  font-style: normal;
+  margin-left: 2px;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--color-gray-300);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-blue-500);
+  box-shadow: 0 0 0 3px rgba(46, 111, 203, 0.16);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 96px;
+}
+
+/* ---------- Origem / Destino (país → cidade) ---------- */
+.route {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-blue-700);
+}
+
+.legend svg {
+  color: var(--color-red-600);
+}
+
+/* Campo de peso com sufixo "t" (toneladas) */
+.suffixWrap {
+  position: relative;
+}
+
+.suffixWrap input {
+  padding-right: 2.2rem;
+}
+
+.suffix {
+  position: absolute;
+  right: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  pointer-events: none;
+}
+
+/* Select com chevron próprio */
+.selectWrap {
+  position: relative;
+}
+
+.selectWrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.4rem;
+  cursor: pointer;
+}
+
+.chevron {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-soft);
+  pointer-events: none;
+  transition: color 0.2s var(--ease);
+}
+
+.selectWrap select:focus ~ .chevron {
+  color: var(--color-blue-500);
+}
+
+.selectWrap select:disabled {
+  background: var(--color-gray-100);
+  color: var(--color-text-soft);
+  cursor: not-allowed;
+}
+
+.otherReveal {
+  animation: fieldReveal 0.32s var(--ease) both;
+}
+
+@keyframes fieldReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.error {
+  color: var(--color-red-600);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.34);
+  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  background: var(--color-whatsapp-dark);
+}
+
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

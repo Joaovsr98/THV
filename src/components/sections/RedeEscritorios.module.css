@@ -1,0 +1,561 @@
+/* =====================================================================
+   MAPA VIVO — Rede logística do Cone Sul
+   Camadas: base apagada · rotas · caminhões · hubs (Chile no topo).
+   Rotas principais fortes, secundárias discretas, brilho percorrendo,
+   radar no Chile. SVG/CSS puro.
+   ===================================================================== */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+  background: linear-gradient(170deg, #0a1b3d 0%, #060f24 100%);
+  padding-block: var(--space-2xl);
+}
+
+/* ---------- Cabeçalho ---------- */
+.head {
+  max-width: 640px;
+  margin: 0 auto var(--space-lg);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-ice);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--color-ice-bright);
+  opacity: 0.6;
+}
+
+.title {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: var(--fs-h2);
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Layout ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* ---------- Mapa ---------- */
+.mapWrap {
+  position: relative;
+  margin: 0;
+}
+
+.mapInner {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(78% 58% at 42% 30%, rgba(46, 111, 203, 0.14), transparent 62%),
+    linear-gradient(160deg, #0b1f47, #050d1f);
+  box-shadow: 0 30px 70px rgba(6, 12, 26, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Camada 1: base apagada ---------- */
+.mapBase {
+  transition: opacity 0.4s var(--ease);
+}
+
+.mapFocused .mapBase {
+  opacity: 0.5;
+}
+
+.contours path {
+  fill: none;
+  stroke: var(--color-ice-bright);
+  stroke-width: 1;
+  opacity: 0.05;
+}
+
+.land {
+  fill: rgba(127, 176, 255, 0.045);
+  stroke: rgba(127, 176, 255, 0.18);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.borders path {
+  fill: none;
+  stroke: rgba(127, 176, 255, 0.14);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.labels text {
+  fill: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+/* ---------- Camada 2: rotas ---------- */
+.edge {
+  fill: none;
+  stroke: var(--color-red-600);
+  stroke-linecap: round;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), stroke-width 0.25s var(--ease);
+}
+
+.mapWrap[data-reveal='in'] .edge {
+  animation: mapDraw 1.5s var(--ease-out-soft) forwards;
+}
+
+@keyframes mapDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Principais x secundárias */
+.main {
+  stroke-width: 2;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 3px rgba(216, 30, 39, 0.4));
+}
+
+.secondary {
+  stroke: var(--color-red-500);
+  stroke-width: 1.4;
+  opacity: 0.4;
+}
+
+/* Estados de hover (depois de main/secondary p/ vencer no cascade) */
+.edgeOn {
+  opacity: 1;
+  stroke-width: 2.6;
+}
+
+.edgeDim {
+  opacity: 0.1;
+}
+
+/* Brilho percorrendo a linha (corredor principal) */
+.flow {
+  fill: none;
+  stroke: #ff9aa0;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 4 92;
+  opacity: 0.7;
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(255, 120, 128, 0.7));
+}
+
+.mapWrap[data-reveal='in'] .flow {
+  animation: flowMove 2.8s linear infinite;
+}
+
+@keyframes flowMove {
+  from {
+    stroke-dashoffset: 96;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.flow.edgeDim {
+  opacity: 0;
+}
+
+.flow.edgeOn {
+  opacity: 0.95;
+}
+
+/* ---------- Camada 3: caminhões ---------- */
+.truck {
+  opacity: 0.9;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.45));
+}
+
+.truckBox,
+.truckCab {
+  fill: #fff;
+}
+
+.wheel {
+  fill: var(--color-navy-950);
+  stroke: #fff;
+  stroke-width: 0.7;
+}
+
+/* ---------- Camada 4: hubs (pontos) ---------- */
+.point {
+  cursor: pointer;
+  outline: none;
+}
+
+.hit {
+  fill: transparent;
+}
+
+.dot {
+  transition: transform 0.2s var(--ease), filter 0.2s var(--ease);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.matriz {
+  fill: var(--color-red-600);
+  stroke: #fff;
+  stroke-width: 1.4;
+  filter: drop-shadow(0 0 5px rgba(216, 30, 39, 0.6));
+}
+
+.apoio {
+  fill: var(--color-navy-950);
+  stroke: var(--color-red-600);
+  stroke-width: 2;
+}
+
+.atendido {
+  fill: rgba(216, 30, 39, 0.5);
+  stroke: var(--color-red-500);
+  stroke-width: 1.4;
+}
+
+.hubRing {
+  fill: none;
+  stroke: rgba(216, 30, 39, 0.32);
+  stroke-width: 1;
+}
+
+.point:hover .dot,
+.pointActive .dot,
+.point:focus-visible .dot {
+  transform: scale(1.32);
+  filter: drop-shadow(0 0 7px rgba(216, 30, 39, 0.7));
+}
+
+/* Radar do Chile (origem da operação) */
+.radar {
+  fill: none;
+  stroke: var(--color-red-500);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mapWrap[data-reveal='in'] .radar {
+  animation: radarPing 3s ease-out infinite;
+}
+
+.mapWrap[data-reveal='in'] .radar2 {
+  animation-delay: 1.5s;
+}
+
+@keyframes radarPing {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(2.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.7);
+  }
+}
+
+.beacon {
+  fill: var(--color-red-600);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mapWrap[data-reveal='in'] .beacon {
+  animation: beaconBreath 3s ease-in-out infinite;
+}
+
+@keyframes beaconBreath {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.26;
+    transform: scale(1.1);
+  }
+}
+
+/* ---------- Tooltip ---------- */
+.tooltip {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, calc(-100% - 15px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-navy-950);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: ttIn 0.16s var(--ease);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-navy-950);
+}
+
+.ttPais {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 0.84rem;
+  color: #fff;
+}
+
+.ttTipo {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tt_matriz {
+  color: #ff6b72;
+}
+.tt_apoio {
+  color: var(--color-ice);
+}
+.tt_atendido {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ttStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.ttDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-whatsapp);
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.25);
+}
+
+@keyframes ttIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 9px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, calc(-100% - 15px));
+  }
+}
+
+/* ---------- Unidades ---------- */
+.infoEyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ice);
+}
+
+.units {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.unit {
+  position: relative;
+  padding: 1.1rem 1.2rem 1.1rem 1.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.28s var(--ease), transform 0.28s var(--ease),
+    background-color 0.28s var(--ease);
+}
+
+.unit:hover,
+.unitActive {
+  transform: translateY(-3px);
+  border-color: rgba(216, 30, 39, 0.5);
+  background: rgba(216, 30, 39, 0.07);
+}
+
+.unitMain {
+  border-color: rgba(216, 30, 39, 0.4);
+  background: rgba(216, 30, 39, 0.06);
+}
+
+.unitDot {
+  position: absolute;
+  left: 0.85rem;
+  top: 1.5rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.dotMatriz {
+  background: var(--color-red-600);
+  box-shadow: 0 0 0 3px rgba(216, 30, 39, 0.2);
+}
+
+.dotApoio {
+  background: var(--color-navy-950);
+  border: 2px solid var(--color-red-600);
+}
+
+.badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--color-red-600);
+  padding: 0.28rem 0.55rem;
+  border-radius: var(--radius-pill);
+}
+
+.unitCountry {
+  display: block;
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #fff;
+}
+
+.unitCity {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ice);
+  margin-top: 3px;
+}
+
+.unitAddr {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.unitAddr svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-red-500);
+}
+
+/* ---------- Também atendemos ---------- */
+.also {
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.alsoLabel {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.chip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .mapWrap {
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}

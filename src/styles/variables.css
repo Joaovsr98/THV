@@ -1,0 +1,110 @@
+/* =====================================================================
+   THV TRANSPORTES — DESIGN TOKENS
+   Território: AÇO + INDÚSTRIA + FORÇA + PRECISÃO.
+   Paleta: grafite / aço + BRASA incandescente (acento escasso).
+   Os nomes das variáveis são herdados da base (motor reutilizado);
+   só os VALORES mudam para a identidade THV.
+   ===================================================================== */
+
+:root {
+  /* ---------- GRAFITE / AÇO (fundos escuros) ----------
+     Nomes "navy" mantidos por compatibilidade; valores = aço. */
+  --color-navy-950: #0b0e11; /* grafite profundo / vinheta */
+  --color-navy-900: #14181c; /* fundo hero / seções escuras */
+  --color-navy-800: #1c2228;
+  --color-navy-700: #2a323a;
+
+  /* ---------- AÇO ESTRUTURAL (antigo "blue" = detalhes/links) ---------- */
+  --color-blue-700: #3a4650;
+  --color-blue-600: #4a5866;
+  --color-blue-500: #6b7b88; /* aço médio — links / detalhes */
+  --color-blue-100: #dfe4e8;
+
+  /* ---------- BRASA (antigo "red" = CTA / destaque escasso) ---------- */
+  --color-red-600: #e2571e; /* brasa — CTA / destaques */
+  --color-red-500: #ff6a2b; /* brasa viva */
+  --color-red-100: #fbe7dc;
+
+  /* ---------- NEUTROS (aço frio / concreto) ---------- */
+  --color-ink: #14181c; /* títulos */
+  --color-text: #3b444d; /* corpo de texto */
+  --color-text-soft: #626d77; /* texto secundário */
+  --color-gray-100: #f2f3f4; /* fundo de seções claras (concreto) */
+  --color-gray-200: #e4e7e9;
+  --color-gray-300: #ccd2d6;
+  --color-white: #ffffff;
+
+  /* ---------- SUPERFÍCIES ---------- */
+  --surface-page: #ffffff;
+  --surface-card: #ffffff;
+  --surface-dark: var(--color-navy-900);
+
+  /* ---------- WHATSAPP ---------- */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
+
+  /* ---------- TIPOGRAFIA ----------
+     Display denso e industrial (Archivo) — contraste com a Mondel. */
+  --font-display: 'Archivo', 'Oswald', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --fs-hero: clamp(2.4rem, 6vw, 4.4rem);
+  --fs-h2: clamp(1.9rem, 4vw, 3rem);
+  --fs-h3: clamp(1.3rem, 2.4vw, 1.7rem);
+  --fs-lead: clamp(1.05rem, 1.6vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.8rem;
+
+  /* ---------- ESPAÇAMENTO ---------- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  --container: 1200px;
+  --container-narrow: 900px;
+
+  /* ---------- RAIOS / SOMBRAS ----------
+     Aço é menos arredondado que a Mondel — cantos mais firmes. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(11, 14, 17, 0.08);
+  --shadow-md: 0 12px 30px rgba(11, 14, 17, 0.14);
+  --shadow-lg: 0 24px 60px rgba(11, 14, 17, 0.22);
+  --shadow-blue: 0 18px 44px rgba(58, 70, 80, 0.3);
+
+  /* ---------- HEADER / LAYOUT ---------- */
+  --header-h: 76px;
+
+  /* ---------- TRANSIÇÕES ---------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.5s;
+
+  /* =====================================================================
+     TOKENS DE MARCA THV — peso, precisão, aço.
+     ===================================================================== */
+
+  /* ---------- CORES DE MARCA ---------- */
+  --color-paper: #f2f0eb; /* neutro claro "caro" (não branco puro) */
+  --color-stone: #8b949c; /* aço médio / hairlines / labels */
+  --color-ice: #b8c2cb; /* aço frio / dados */
+  --color-ice-bright: #8fa6b5; /* aço vivo */
+
+  /* ---------- TIPOGRAFIA DE MARCA ---------- */
+  --font-brand: 'Archivo', 'Oswald', system-ui, sans-serif; /* display industrial */
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace; /* ficha técnica */
+
+  /* ---------- MOTION (peso e inércia) ---------- */
+  --motion-micro: 140ms;
+  --motion-base: 300ms;
+  --motion-enter: 640ms;
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-weight: cubic-bezier(0.65, 0, 0.35, 1); /* massa dominada */
+}

@@ -1,0 +1,149 @@
+.footer {
+  background: var(--color-navy-900);
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
+  gap: 2.5rem;
+  padding-block: var(--space-xl);
+}
+
+.brandCol {
+  max-width: 320px;
+}
+
+.about {
+  margin-top: 1.2rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.social a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  transition: background-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.social a:hover {
+  background: var(--color-red-600);
+  transform: translateY(-3px);
+}
+
+.colTitle {
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.1rem;
+}
+
+.col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.col a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.62);
+  transition: color 0.2s var(--ease);
+}
+
+.col a:hover {
+  color: #fff;
+}
+
+.contactList a,
+.addr {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.addr {
+  align-items: flex-start;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contactList svg,
+.addr svg {
+  flex-shrink: 0;
+  color: var(--color-blue-500);
+  margin-top: 2px;
+}
+
+/* ---------- Bottom bar ---------- */
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bottomInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dev {
+  font-size: 0.82rem;
+}
+
+.bottomLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.privacyLink {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  transition: color 0.2s var(--ease, ease);
+}
+
+.privacyLink:hover {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .top {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .brandCol {
+    grid-column: 1 / -1;
+    max-width: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+  .bottomInner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

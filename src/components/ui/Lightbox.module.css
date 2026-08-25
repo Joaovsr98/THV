@@ -1,0 +1,126 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.4rem, 2vw, 1.4rem);
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(4, 9, 20, 0.92);
+  backdrop-filter: blur(6px);
+  animation: fade 0.22s var(--ease, ease);
+}
+
+.figure {
+  position: relative;
+  max-width: min(1100px, 92vw);
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  animation: pop 0.28s var(--ease, ease);
+}
+
+.img {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--radius-md, 14px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.counter {
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+
+.close {
+  position: absolute;
+  top: clamp(0.8rem, 2vw, 1.6rem);
+  right: clamp(0.8rem, 2vw, 1.6rem);
+  z-index: 2;
+}
+
+.close,
+.nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-pill, 999px);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    background var(--motion-micro, 0.15s) var(--ease, ease),
+    transform var(--motion-micro, 0.15s) var(--ease, ease);
+}
+
+.close:hover,
+.nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.06);
+}
+
+.nav:active {
+  transform: scale(0.96);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+@media (max-width: 620px) {
+  .overlay {
+    gap: 0.3rem;
+  }
+  .close,
+  .nav {
+    width: 42px;
+    height: 42px;
+  }
+  /* setas sobrepostas na base para não competir com a imagem */
+  .nav {
+    position: absolute;
+    bottom: 1.1rem;
+    z-index: 3;
+  }
+  .prev {
+    left: 1.1rem;
+  }
+  .next {
+    right: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay,
+  .figure {
+    animation: none;
+  }
+}
