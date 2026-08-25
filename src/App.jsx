@@ -5,7 +5,7 @@ import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
 
 import Hero from './components/sections/Hero.jsx';
-import Travessia from './components/sections/Travessia.jsx';
+import Timeline from './components/sections/Timeline.jsx';
 import Sobre from './components/sections/Sobre.jsx';
 import Servicos from './components/sections/Servicos.jsx';
 import Processo from './components/sections/Processo.jsx';
@@ -25,7 +25,7 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <Travessia />
+        <Timeline />
         <Sobre />
         <Servicos />
         <Processo />

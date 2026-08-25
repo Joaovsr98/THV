@@ -1,37 +1,39 @@
 /* =====================================================================
    THV TRANSPORTES — DESIGN TOKENS
    Território: AÇO + INDÚSTRIA + FORÇA + PRECISÃO.
-   Paleta: grafite / aço + BRASA incandescente (acento escasso).
-   Os nomes das variáveis são herdados da base (motor reutilizado);
-   só os VALORES mudam para a identidade THV.
+   Paleta: identidade REAL da THV — AZUL institucional profundo +
+   AZUL/CIANO (acento tecnológico) + branco; aço/grafite como auxiliar.
+   (Interpretação premium e contemporânea das cores oficiais — não o
+   tom antigo de 2010.) Nomes de variável herdados da base; só os
+   VALORES mudam. O antigo "red" passou a carregar o CIANO da marca.
    ===================================================================== */
 
 :root {
-  /* ---------- GRAFITE / AÇO (fundos escuros) ----------
-     Nomes "navy" mantidos por compatibilidade; valores = aço. */
-  --color-navy-950: #0b0e11; /* grafite profundo / vinheta */
-  --color-navy-900: #14181c; /* fundo hero / seções escuras */
-  --color-navy-800: #1c2228;
-  --color-navy-700: #2a323a;
+  /* ---------- AZUL PROFUNDO (fundos escuros / institucional) ----------
+     Nomes "navy" mantidos; valores = azul THV profundo (levemente índigo). */
+  --color-navy-950: #070b1e; /* azul-quase-preto / vinheta */
+  --color-navy-900: #0c1330; /* fundo hero / seções escuras */
+  --color-navy-800: #141d3f;
+  --color-navy-700: #1e2b56;
 
-  /* ---------- AÇO ESTRUTURAL (antigo "blue" = detalhes/links) ---------- */
-  --color-blue-700: #3a4650;
-  --color-blue-600: #4a5866;
-  --color-blue-500: #6b7b88; /* aço médio — links / detalhes */
-  --color-blue-100: #dfe4e8;
+  /* ---------- AZUL ELÉTRICO / INSTITUCIONAL (antigo "blue") ---------- */
+  --color-blue-700: #1c44a8;
+  --color-blue-600: #2a5cd0;
+  --color-blue-500: #3d78ea; /* azul elétrico — links / detalhes */
+  --color-blue-100: #dde8fc;
 
-  /* ---------- BRASA (antigo "red" = CTA / destaque escasso) ---------- */
-  --color-red-600: #e2571e; /* brasa — CTA / destaques */
-  --color-red-500: #ff6a2b; /* brasa viva */
-  --color-red-100: #fbe7dc;
+  /* ---------- CIANO (acento tecnológico / CTA) — antigo "red" ---------- */
+  --color-red-600: #1298d6; /* azul-ciano THV — CTA / destaques */
+  --color-red-500: #38c3ee; /* ciano vivo */
+  --color-red-100: #d7f1fb;
 
-  /* ---------- NEUTROS (aço frio / concreto) ---------- */
-  --color-ink: #14181c; /* títulos */
-  --color-text: #3b444d; /* corpo de texto */
-  --color-text-soft: #626d77; /* texto secundário */
-  --color-gray-100: #f2f3f4; /* fundo de seções claras (concreto) */
-  --color-gray-200: #e4e7e9;
-  --color-gray-300: #ccd2d6;
+  /* ---------- NEUTROS (branco / off-white / aço) ---------- */
+  --color-ink: #0e1730; /* títulos (azul muito escuro) */
+  --color-text: #3b4658; /* corpo de texto */
+  --color-text-soft: #616d80; /* texto secundário */
+  --color-gray-100: #f2f5f9; /* fundo de seções claras (off-white azulado) */
+  --color-gray-200: #e3e8f0;
+  --color-gray-300: #c9d2df;
   --color-white: #ffffff;
 
   /* ---------- SUPERFÍCIES ---------- */
@@ -68,16 +70,16 @@
   --container-narrow: 900px;
 
   /* ---------- RAIOS / SOMBRAS ----------
-     Aço é menos arredondado que a Mondel — cantos mais firmes. */
+     Aço é menos arredondado — cantos firmes. */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 2px 8px rgba(11, 14, 17, 0.08);
-  --shadow-md: 0 12px 30px rgba(11, 14, 17, 0.14);
-  --shadow-lg: 0 24px 60px rgba(11, 14, 17, 0.22);
-  --shadow-blue: 0 18px 44px rgba(58, 70, 80, 0.3);
+  --shadow-sm: 0 2px 8px rgba(9, 14, 34, 0.08);
+  --shadow-md: 0 12px 30px rgba(9, 14, 34, 0.14);
+  --shadow-lg: 0 24px 60px rgba(9, 14, 34, 0.22);
+  --shadow-blue: 0 18px 44px rgba(42, 92, 208, 0.3);
 
   /* ---------- HEADER / LAYOUT ---------- */
   --header-h: 76px;
@@ -87,14 +89,14 @@
   --dur: 0.5s;
 
   /* =====================================================================
-     TOKENS DE MARCA THV — peso, precisão, aço.
+     TOKENS DE MARCA THV — peso, precisão, azul + aço.
      ===================================================================== */
 
   /* ---------- CORES DE MARCA ---------- */
-  --color-paper: #f2f0eb; /* neutro claro "caro" (não branco puro) */
-  --color-stone: #8b949c; /* aço médio / hairlines / labels */
-  --color-ice: #b8c2cb; /* aço frio / dados */
-  --color-ice-bright: #8fa6b5; /* aço vivo */
+  --color-paper: #eef1f6; /* off-white azulado */
+  --color-stone: #8792a4; /* aço médio / hairlines / labels */
+  --color-ice: #a7c3ec; /* azul claro / dados / eyebrows sobre escuro */
+  --color-ice-bright: #74a6ff; /* azul vivo */
 
   /* ---------- TIPOGRAFIA DE MARCA ---------- */
   --font-brand: 'Archivo', 'Oswald', system-ui, sans-serif; /* display industrial */

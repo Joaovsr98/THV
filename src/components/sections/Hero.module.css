@@ -13,8 +13,8 @@
   isolation: isolate;
   color: #fff;
   background:
-    radial-gradient(120% 90% at 78% 40%, rgba(74, 88, 102, 0.22), transparent 58%),
-    linear-gradient(158deg, #0b0e11 0%, #14181c 52%, #1c2228 100%);
+    radial-gradient(120% 90% at 78% 40%, rgba(42, 92, 208, 0.2), transparent 58%),
+    linear-gradient(158deg, #070b1e 0%, #0c1330 52%, #141d3f 100%);
   padding-top: var(--header-h);
 }
 
@@ -58,9 +58,9 @@
 
 /* Um único anel na brasa — acento raro */
 .coilRings circle.coilEmber {
-  stroke: var(--color-red-600);
-  opacity: 0.5;
-  filter: drop-shadow(0 0 6px rgba(226, 87, 30, 0.4));
+  stroke: var(--color-red-500);
+  opacity: 0.55;
+  filter: drop-shadow(0 0 6px rgba(56, 195, 238, 0.45));
 }
 
 .coilCore {
@@ -73,7 +73,7 @@
 .vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 90% 82% at 34% 40%, transparent 42%, rgba(11, 14, 17, 0.72) 100%);
+  background: radial-gradient(ellipse 90% 82% at 34% 40%, transparent 42%, rgba(7, 11, 30, 0.72) 100%);
 }
 
 /* ---------- Conteúdo ---------- */
@@ -201,7 +201,7 @@
 
 .loadlineEmber {
   fill: var(--color-red-500);
-  filter: drop-shadow(0 0 5px rgba(255, 106, 43, 0.7));
+  filter: drop-shadow(0 0 5px rgba(56, 195, 238, 0.75));
   animation: emberRun 9s var(--ease-weight, ease-in-out) infinite;
 }
 
