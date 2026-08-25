@@ -82,17 +82,18 @@
   margin-inline: auto;
 }
 
-/* Chapa de aço */
+/* Chapa de aço — precisa contrastar com o fundo (#0c1330) para ler a silhueta */
 .plate {
-  fill: #16223f;
+  fill: #22335f;
   stroke: none;
 }
 
 .plateEdge {
   fill: none;
-  stroke: #3f5170;
-  stroke-width: 1.5;
+  stroke: #6f8bc0;
+  stroke-width: 2;
   stroke-linejoin: round;
+  filter: drop-shadow(0 0 10px rgba(42, 92, 208, 0.25));
 }
 
 /* Rotas */
