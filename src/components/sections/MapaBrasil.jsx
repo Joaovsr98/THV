@@ -12,52 +12,54 @@ import styles from './MapaBrasil.module.css';
    ainda precisa ser confirmada com a empresa.
    --------------------------------------------------------------------- */
 
-// Contorno simplificado do Brasil (chapa recortada). viewBox 0 0 460 540.
+// Contorno do Brasil (silhueta reconhecível). Pontos projetados das
+// coordenadas geográficas reais da fronteira. viewBox 0 0 460 460.
 const BRASIL =
-  'M150 60 Q120 44 175 46 Q230 50 250 92 Q300 120 330 128 Q372 138 404 172 ' +
-  'Q388 212 360 236 Q350 280 330 316 Q320 344 300 360 Q286 372 276 392 ' +
-  'Q262 430 238 468 Q228 486 210 470 Q190 440 176 402 Q150 360 120 336 ' +
-  'Q78 322 66 286 Q58 240 84 214 Q96 176 120 150 Q132 104 150 60 Z';
+  'M155.7 3.4 L160.2 15.8 L250.4 15.8 L270.7 59.8 L287.6 76.7 L335 88 ' +
+  'L400.4 101.5 L442.2 139.9 L441 150.6 L432 168.1 L400.4 206.4 L394.8 226.7 ' +
+  'L385.8 284.3 L347.4 319.3 L312.5 330.3 L287.6 347.4 L286.5 371.1 L265.1 403.8 ' +
+  'L232.4 439.9 L185 398.2 L178.2 307.9 L185 274.1 L157.9 243.6 L112.8 200.8 ' +
+  'L67.7 183.9 L2.3 144.4 L45.1 104.9 L56.4 71.1 L101.5 48.5 L118.4 15.8 Z';
 
 const ESTADOS = [
   {
     id: 'pe',
     uf: 'PE',
     nome: 'Pernambuco',
-    x: 392,
-    y: 168,
+    x: 438,
+    y: 152,
     cidades: ['Recife'],
   },
   {
     id: 'ba',
     uf: 'BA',
     nome: 'Bahia',
-    x: 352,
-    y: 232,
+    x: 398,
+    y: 208,
     cidades: ['Simões Filho'],
   },
   {
     id: 'mg',
     uf: 'MG',
     nome: 'Minas Gerais',
-    x: 300,
-    y: 300,
+    x: 340,
+    y: 286,
     cidades: ['Contagem', 'Divinópolis', 'Barão de Cocais'],
   },
   {
     id: 'rj',
     uf: 'RJ',
     nome: 'Rio de Janeiro',
-    x: 324,
-    y: 332,
+    x: 349,
+    y: 318,
     cidades: ['Rio de Janeiro', 'Itaguaí'],
   },
   {
     id: 'sp',
     uf: 'SP',
     nome: 'São Paulo',
-    x: 282,
-    y: 354,
+    x: 312,
+    y: 326,
     hub: true,
     cidades: [
       'Guarulhos',
@@ -74,14 +76,14 @@ const ESTADOS = [
 ];
 
 const EDGES = [
-  { id: 'sp-rj', from: 'sp', to: 'rj', d: 'M282 354 Q306 336 324 332' },
-  { id: 'sp-mg', from: 'sp', to: 'mg', d: 'M282 354 Q286 324 300 300' },
-  { id: 'mg-ba', from: 'mg', to: 'ba', d: 'M300 300 Q330 262 352 232' },
-  { id: 'ba-pe', from: 'ba', to: 'pe', d: 'M352 232 Q378 198 392 168' },
+  { id: 'sp-rj', from: 'sp', to: 'rj', d: 'M312 326 Q332 320 349 318' },
+  { id: 'sp-mg', from: 'sp', to: 'mg', d: 'M312 326 Q328 302 340 286' },
+  { id: 'mg-ba', from: 'mg', to: 'ba', d: 'M340 286 Q378 242 398 208' },
+  { id: 'ba-pe', from: 'ba', to: 'pe', d: 'M398 208 Q424 178 438 152' },
 ];
 
 const TRUCK_ROUTE =
-  'M282 354 Q286 324 300 300 Q330 262 352 232 Q378 198 392 168';
+  'M312 326 Q328 302 340 286 Q378 242 398 208 Q424 178 438 152';
 
 const totalUnidades = ESTADOS.reduce((n, e) => n + e.cidades.length, 0);
 
@@ -133,7 +135,7 @@ export function MapaBrasil() {
           <figure className={`${styles.mapWrap} ${active ? styles.mapFocused : ''}`} data-reveal>
             <svg
               className={styles.map}
-              viewBox="0 0 460 540"
+              viewBox="0 0 460 460"
               role="img"
               aria-label="Mapa da presença da THV no Brasil"
             >
@@ -165,7 +167,7 @@ export function MapaBrasil() {
                   onBlur={leave(s.id)}
                   tabIndex={0}
                   role="button"
-                  aria-label={`${s.nome} — ${s.cidades.length} ${s.cidades.length > 1 ? 'unidades' : 'unidade'}`}
+                  aria-label={`${s.nome}, ${s.cidades.length} ${s.cidades.length > 1 ? 'unidades' : 'unidade'}`}
                 >
                   <circle className={styles.hit} cx={s.x} cy={s.y} r="16" />
                   {s.hub && <circle className={styles.beacon} cx={s.x} cy={s.y} r="12" />}

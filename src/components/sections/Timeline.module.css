@@ -1,6 +1,7 @@
 /* =====================================================================
    TIMELINE — "Forjada ao longo do tempo"
-   Fundo grafite · barra de aço que cresce no scroll · brasa nos marcos.
+   Desktop: horizontal, marcos alternados acima/abaixo do eixo.
+   Mobile: vertical, eixo à esquerda.
    ===================================================================== */
 
 .section {
@@ -13,7 +14,6 @@
   overflow: hidden;
 }
 
-/* Textura de aço escovado, muito sutil */
 .section::before {
   content: '';
   position: absolute;
@@ -73,38 +73,27 @@
   color: rgba(255, 255, 255, 0.66);
 }
 
-/* ---------- Trilho ---------- */
+/* ---------- Trilho (base: VERTICAL / mobile) ---------- */
 .track {
   position: relative;
+  list-style: none;
   padding-left: 4px;
 }
 
-/* A viga de aço */
-.beam {
+.axis {
   position: absolute;
   left: 9px;
-  top: 8px;
-  bottom: 8px;
+  top: 6px;
+  bottom: 6px;
   width: 2px;
-  background: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, var(--color-red-500) 0%, var(--color-red-600) 12%, #46577a 60%, #46577a 100%);
+  border-radius: 2px;
 }
 
-/* Parte "forjada" — cresce com o scroll, brasa no topo do avanço */
-.beamFill {
-  position: absolute;
-  left: -0.5px;
-  top: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--color-red-500) 0%, var(--color-red-600) 16%, #46577a 62%, #46577a 100%);
-  box-shadow: 0 0 10px rgba(56, 195, 238, 0.4);
-  transition: height 0.7s var(--ease-weight, ease);
-}
-
-/* ---------- Marcos ---------- */
 .item {
   position: relative;
-  padding-left: 56px;
-  padding-bottom: 2.8rem;
+  padding-left: 44px;
+  padding-bottom: 2rem;
 }
 
 .item:last-child {
@@ -114,101 +103,107 @@
 .node {
   position: absolute;
   left: 2px;
-  top: 6px;
-  width: 16px;
-  height: 16px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background: #141d3f;
-  border: 2px solid #46577a;
-  transition:
-    border-color var(--motion-base, 0.3s) var(--ease-weight, ease),
-    box-shadow var(--motion-base, 0.3s) var(--ease-weight, ease);
+  background: #0c1330;
+  border: 2px solid var(--color-red-500);
+  box-shadow: 0 0 0 4px rgba(56, 195, 238, 0.12);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .ano {
-  display: block;
   font-family: var(--font-brand);
   font-weight: 800;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  letter-spacing: -0.01em;
+  font-size: 1.5rem;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.32);
-  transition: color var(--motion-base, 0.3s) var(--ease-weight, ease);
-}
-
-.texto {
-  margin-top: 0.55rem;
-  max-width: 46ch;
-  font-size: 0.98rem;
-  line-height: 1.58;
-  color: rgba(255, 255, 255, 0.42);
-  transition: color var(--motion-base, 0.3s) var(--ease-weight, ease);
-}
-
-/* Estado ativo — marco alcançado pelo scroll */
-.item.on .node {
-  border-color: var(--color-red-500);
-  background: #0c1330;
-  box-shadow: 0 0 0 5px rgba(56, 195, 238, 0.14), 0 0 12px rgba(56, 195, 238, 0.55);
-}
-
-.item.on .ano {
+  letter-spacing: -0.01em;
   color: #fff;
 }
 
-.item.on .texto {
-  color: rgba(255, 255, 255, 0.78);
+.texto {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.72);
 }
 
-/* Fecho "HOJE" — sem descrição factual nova, só marca visual */
 .item.fim .ano {
   color: var(--color-red-500);
 }
 
-.item.fim.on .ano {
-  color: var(--color-red-500);
-}
-
-.item.fim .node {
-  width: 20px;
-  height: 20px;
-  left: 0;
-}
-
-/* ---------- Desktop: ano à esquerda da viga, texto à direita ---------- */
-@media (min-width: 860px) {
+/* ---------- DESKTOP: HORIZONTAL ---------- */
+@media (min-width: 900px) {
   .track {
-    padding-left: 200px;
+    display: grid;
+    grid-template-columns: repeat(11, minmax(0, 1fr));
+    height: 292px;
+    padding-left: 0;
+    margin-top: 2.5rem;
   }
-  .beam {
-    left: 205px;
+
+  .axis {
+    left: 0;
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    width: auto;
+    height: 2px;
+    transform: translateY(-1px);
+    background: linear-gradient(90deg, var(--color-red-500) 0%, var(--color-red-600) 8%, #46577a 55%, #46577a 100%);
   }
+
   .item {
-    padding-left: 56px;
+    display: grid;
+    grid-template-rows: 122px 24px 122px;
+    justify-items: center;
+    text-align: center;
+    padding: 0;
+    height: 100%;
   }
+
   .node {
-    left: -2px;
+    position: static;
+    grid-row: 2;
+    align-self: center;
   }
-  .item.fim .node {
-    left: -4px;
+
+  .content {
+    width: 122px;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
   }
+
+  .item:nth-child(odd) .content {
+    grid-row: 1;
+    align-self: end;
+    padding-bottom: 12px;
+  }
+
+  .item:nth-child(even) .content {
+    grid-row: 3;
+    align-self: start;
+    padding-top: 12px;
+  }
+
   .ano {
-    position: absolute;
-    left: -200px;
-    top: 0;
-    width: 168px;
-    text-align: right;
+    font-size: 1.5rem;
   }
+
   .texto {
-    margin-top: 0;
+    font-size: 0.78rem;
+    line-height: 1.35;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .beamFill,
-  .node,
-  .ano,
-  .texto {
+  .track {
     transition: none;
   }
 }

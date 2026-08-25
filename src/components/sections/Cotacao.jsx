@@ -56,7 +56,7 @@ export function Cotacao() {
       '',
       form.mensagem ? `Mensagem: ${form.mensagem}` : '',
     ].join('\n');
-    const assunto = `Solicitação de cotação — ${form.cargo}`;
+    const assunto = `Solicitação de cotação: ${form.cargo}`;
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
   };
 

@@ -47,7 +47,7 @@ export function Hero() {
         </h1>
 
         <p className={styles.subtitle}>
-          Especialistas no transporte de cargas siderúrgicas — aços, tubos e insumos — para a
+          Especialistas no transporte de cargas siderúrgicas, como aços, tubos e insumos, para a
           indústria brasileira desde 1987.
         </p>
 

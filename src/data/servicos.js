@@ -14,7 +14,7 @@ export const servicos = [
     accent: 'blue',
     subtitle: 'Carga siderúrgica',
     title: 'Aços Longos',
-    text: 'Vergalhões, barras, fio-máquina e perfis — transporte dimensionado para produtos de grande comprimento.',
+    text: 'Vergalhões, barras, fio-máquina e perfis, com transporte dimensionado para produtos de grande comprimento.',
     long: 'Transporte especializado de aços longos, com estiva e amarração adequadas a produtos de grande comprimento. A experiência da THV com a cadeia siderúrgica garante o manuseio correto do carregamento à entrega.',
     highlights: ['Vergalhões e barras', 'Fio-máquina', 'Perfis estruturais'],
   },
@@ -25,7 +25,7 @@ export const servicos = [
     subtitle: 'Carga siderúrgica',
     title: 'Aços Planos',
     text: 'Chapas e bobinas laminadas, com estiva e amarração adequadas ao produto plano.',
-    long: 'Movimentação de aços planos — chapas e bobinas — com acondicionamento que preserva a integridade do produto durante todo o trajeto.',
+    long: 'Movimentação de aços planos, como chapas e bobinas, com acondicionamento que preserva a integridade do produto durante todo o trajeto.',
     highlights: ['Chapas', 'Bobinas laminadas', 'Estiva controlada'],
   },
   {

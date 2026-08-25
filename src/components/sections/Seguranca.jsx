@@ -45,7 +45,7 @@ export function Seguranca() {
           </span>
           <h2 className={styles.title}>Sua carga acompanhada em toda a operação</h2>
           <p className={styles.subtitle}>
-            Do pátio à entrega, cada etapa é controlada — para que o aço chegue com a mesma
+            Do pátio à entrega, cada etapa é controlada, para que o aço chegue com a mesma
             segurança com que saiu.
           </p>
         </header>
