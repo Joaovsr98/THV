@@ -8,6 +8,7 @@ import Hero from './components/sections/Hero.jsx';
 import Timeline from './components/sections/Timeline.jsx';
 import Servicos from './components/sections/Servicos.jsx';
 import MapaBrasil from './components/sections/MapaBrasil.jsx';
+import Seguranca from './components/sections/Seguranca.jsx';
 
 /* ---------------------------------------------------------------------
    Construção em andamento. Só entram no ar as seções já vestidas com a
@@ -32,6 +33,7 @@ export default function App() {
         <Timeline />
         <Servicos />
         <MapaBrasil />
+        <Seguranca />
       </main>
       <Footer />
     </>
