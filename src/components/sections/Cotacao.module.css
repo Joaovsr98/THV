@@ -165,6 +165,11 @@
   font-weight: 600;
 }
 
+.req {
+  color: var(--color-red-600);
+  font-weight: 700;
+}
+
 .erro {
   font-size: 0.85rem;
   color: #c0392b;

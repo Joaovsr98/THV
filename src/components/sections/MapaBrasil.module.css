@@ -14,8 +14,8 @@
 }
 
 .head {
-  max-width: 54ch;
-  margin-bottom: var(--space-xl);
+  max-width: 46ch;
+  margin-bottom: var(--space-lg);
 }
 
 .eyebrow {
@@ -55,12 +55,16 @@
   color: rgba(255, 255, 255, 0.66);
 }
 
-/* ---------- Layout ---------- */
+/* ---------- Layout: texto/unidades à esquerda, mapa à direita ---------- */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
+}
+
+.left {
+  min-width: 0;
 }
 
 /* ---------- Mapa ---------- */
@@ -72,8 +76,10 @@
 .map {
   width: 100%;
   height: auto;
-  max-height: 560px;
+  max-height: 500px;
   overflow: visible;
+  display: block;
+  margin-inline: auto;
 }
 
 /* Chapa de aço */

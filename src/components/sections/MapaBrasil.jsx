@@ -119,18 +119,67 @@ export function MapaBrasil() {
   return (
     <section id="atuacao" className={styles.section}>
       <div className="container">
-        <header className={styles.head} data-reveal>
-          <span className={styles.eyebrow}>
-            <i className={styles.tick} aria-hidden="true" />
-            Presença nacional
-          </span>
-          <h2 className={styles.title}>Estrutura instalada onde a indústria está</h2>
-          <p className={styles.subtitle}>
-            Unidades em cinco estados, cobrindo os principais polos siderúrgicos do país.
-          </p>
-        </header>
-
         <div className={styles.grid}>
+          {/* ---------- Texto + unidades ---------- */}
+          <div className={styles.left}>
+            <header className={styles.head} data-reveal>
+              <span className={styles.eyebrow}>
+                <i className={styles.tick} aria-hidden="true" />
+                Presença nacional
+              </span>
+              <h2 className={styles.title}>Estrutura instalada onde a indústria está</h2>
+              <p className={styles.subtitle}>
+                Unidades em cinco estados, cobrindo os principais polos siderúrgicos do país.
+              </p>
+            </header>
+
+            <div className={styles.info}>
+              <div className={styles.count} data-reveal>
+                <span className={styles.countValue}>{totalUnidades}</span>
+                <span className={styles.countLabel}>unidades em 5 estados</span>
+              </div>
+
+              <ul className={styles.units}>
+                {ESTADOS.map((s, i) => (
+                  <li
+                    key={s.id}
+                    className={`${styles.unit} ${active === s.id ? styles.unitActive : ''}`}
+                    data-reveal
+                    data-reveal-delay={i + 1}
+                    onMouseEnter={enter(s.id)}
+                    onMouseLeave={leave(s.id)}
+                  >
+                    <div className={styles.unitHead}>
+                      <span className={`${styles.badge} ${s.hub ? styles.badgeHub : ''}`}>{s.uf}</span>
+                      <span className={styles.unitState}>{s.nome}</span>
+                      {s.hub && (
+                        <span className={styles.hubTag}>
+                          <Star size={11} strokeWidth={2.6} /> Base operacional
+                        </span>
+                      )}
+                      <span className={styles.unitCount}>
+                        {s.cidades.length} {s.cidades.length > 1 ? 'unidades' : 'unidade'}
+                      </span>
+                    </div>
+                    <div className={styles.cities}>
+                      {s.cidades.map((c) => (
+                        <span key={c} className={styles.city}>
+                          <MapPin size={12} strokeWidth={2} aria-hidden="true" />
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+
+              <p className={styles.note} data-reveal>
+                Presença documentada. A confirmação da atividade atual de cada unidade será feita com
+                a THV.
+              </p>
+            </div>
+          </div>
+
           {/* ---------- Mapa ---------- */}
           <figure className={`${styles.mapWrap} ${active ? styles.mapFocused : ''}`} data-reveal>
             <svg
@@ -179,53 +228,6 @@ export function MapaBrasil() {
               ))}
             </svg>
           </figure>
-
-          {/* ---------- Unidades ---------- */}
-          <div className={styles.info}>
-            <div className={styles.count} data-reveal>
-              <span className={styles.countValue}>{totalUnidades}</span>
-              <span className={styles.countLabel}>unidades em 5 estados</span>
-            </div>
-
-            <ul className={styles.units}>
-              {ESTADOS.map((s, i) => (
-                <li
-                  key={s.id}
-                  className={`${styles.unit} ${active === s.id ? styles.unitActive : ''}`}
-                  data-reveal
-                  data-reveal-delay={i + 1}
-                  onMouseEnter={enter(s.id)}
-                  onMouseLeave={leave(s.id)}
-                >
-                  <div className={styles.unitHead}>
-                    <span className={`${styles.badge} ${s.hub ? styles.badgeHub : ''}`}>{s.uf}</span>
-                    <span className={styles.unitState}>{s.nome}</span>
-                    {s.hub && (
-                      <span className={styles.hubTag}>
-                        <Star size={11} strokeWidth={2.6} /> Base operacional
-                      </span>
-                    )}
-                    <span className={styles.unitCount}>
-                      {s.cidades.length} {s.cidades.length > 1 ? 'unidades' : 'unidade'}
-                    </span>
-                  </div>
-                  <div className={styles.cities}>
-                    {s.cidades.map((c) => (
-                      <span key={c} className={styles.city}>
-                        <MapPin size={12} strokeWidth={2} aria-hidden="true" />
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <p className={styles.note} data-reveal>
-              Presença documentada. A confirmação da atividade atual de cada unidade será feita com a
-              THV.
-            </p>
-          </div>
         </div>
       </div>
     </section>

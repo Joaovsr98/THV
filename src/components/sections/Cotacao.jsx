@@ -26,7 +26,9 @@ export function Cotacao() {
     origem: '',
     destino: '',
     nome: '',
-    contato: '',
+    empresa: '',
+    email: '',
+    telefone: '',
     mensagem: '',
   });
   const [erro, setErro] = useState('');
@@ -41,8 +43,8 @@ export function Cotacao() {
 
   const submit = (e) => {
     e.preventDefault();
-    if (!form.cargo || !form.nome.trim() || !form.contato.trim()) {
-      setErro('Preencha o tipo de carga, o nome e um contato.');
+    if (!form.cargo || !form.nome.trim() || (!form.email.trim() && !form.telefone.trim())) {
+      setErro('Preencha o tipo de carga, o nome e ao menos um contato (e-mail ou telefone).');
       return;
     }
     const corpo = [
@@ -52,7 +54,9 @@ export function Cotacao() {
       `Destino: ${form.destino || '-'}`,
       '',
       `Nome: ${form.nome}`,
-      `Contato: ${form.contato}`,
+      `Empresa: ${form.empresa || '-'}`,
+      `E-mail: ${form.email || '-'}`,
+      `Telefone: ${form.telefone || '-'}`,
       '',
       form.mensagem ? `Mensagem: ${form.mensagem}` : '',
     ].join('\n');
@@ -89,7 +93,9 @@ export function Cotacao() {
         {/* ---------- Formulário ---------- */}
         <form className={styles.form} onSubmit={submit} noValidate>
           <div className={styles.field}>
-            <label htmlFor="cargo">Tipo de carga</label>
+            <label htmlFor="cargo">
+              Tipo de carga <span className={styles.req}>*</span>
+            </label>
             <select id="cargo" value={form.cargo} onChange={set('cargo')}>
               <option value="" disabled>
                 Selecione…
@@ -127,12 +133,25 @@ export function Cotacao() {
 
           <div className={styles.row}>
             <div className={styles.field}>
-              <label htmlFor="nome">Nome</label>
+              <label htmlFor="nome">
+                Nome <span className={styles.req}>*</span>
+              </label>
               <input id="nome" type="text" placeholder="Seu nome" value={form.nome} onChange={set('nome')} />
             </div>
             <div className={styles.field}>
-              <label htmlFor="contato">E-mail ou telefone</label>
-              <input id="contato" type="text" placeholder="Como falar com você" value={form.contato} onChange={set('contato')} />
+              <label htmlFor="empresa">Empresa</label>
+              <input id="empresa" type="text" placeholder="Nome da empresa" value={form.empresa} onChange={set('empresa')} />
+            </div>
+          </div>
+
+          <div className={styles.row}>
+            <div className={styles.field}>
+              <label htmlFor="email">E-mail</label>
+              <input id="email" type="email" placeholder="nome@empresa.com" value={form.email} onChange={set('email')} />
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="telefone">Telefone</label>
+              <input id="telefone" type="tel" placeholder="(00) 00000-0000" value={form.telefone} onChange={set('telefone')} />
             </div>
           </div>
 
@@ -153,7 +172,7 @@ export function Cotacao() {
           </button>
           <p className={styles.hint}>
             <Check size={13} strokeWidth={2.6} aria-hidden="true" />
-            Abre seu e-mail com os dados já preenchidos para {EMAIL}.
+            <span className={styles.req}>*</span> Campos obrigatórios. Abre seu e-mail para {EMAIL}.
           </p>
         </form>
       </div>
