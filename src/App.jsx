@@ -10,6 +10,7 @@ import Servicos from './components/sections/Servicos.jsx';
 import MapaBrasil from './components/sections/MapaBrasil.jsx';
 import Seguranca from './components/sections/Seguranca.jsx';
 import Frota from './components/sections/Frota.jsx';
+import Responsabilidade from './components/sections/Responsabilidade.jsx';
 
 /* ---------------------------------------------------------------------
    Construção em andamento. Só entram no ar as seções já vestidas com a
@@ -36,6 +37,7 @@ export default function App() {
         <MapaBrasil />
         <Seguranca />
         <Frota />
+        <Responsabilidade />
       </main>
       <Footer />
     </>
