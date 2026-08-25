@@ -1,28 +1,18 @@
 import styles from './Logo.module.css';
+import logoUrl from '../../assets/logo/thv-oficial.png';
 
 /* ---------------------------------------------------------------------
-   LOGO — wordmark provisório da THV (texto).
-   Enquanto não recebemos o logo oficial em alta, usamos um wordmark
-   tipográfico industrial: "THV" pesado + "TRANSPORTES" em mono, com o
-   tick de brasa (elemento proprietário). Fácil de trocar depois.
-
-   variant="light" → sobre fundos escuros (Hero, rodapé)
-   variant="dark"  → sobre fundos claros (header com scroll)
+   LOGO — marca oficial da THV.
+   O arquivo é colorido (azul + ciano) sobre transparente, então fica
+   num selo branco para garantir contraste tanto no Hero escuro quanto
+   no header claro (com scroll). Para trocar por uma versão em maior
+   resolução, basta substituir src/assets/logo/thv-oficial.png.
    --------------------------------------------------------------------- */
 
-export function Logo({ variant = 'dark', className = '' }) {
-  const isLight = variant === 'light';
+export function Logo({ className = '' }) {
   return (
-    <a
-      href="#inicio"
-      className={`${styles.logo} ${isLight ? styles.light : ''} ${className}`}
-      aria-label="THV Transportes — início"
-    >
-      <span className={styles.mark}>
-        THV
-        <i className={styles.tick} aria-hidden="true" />
-      </span>
-      <span className={styles.sub}>Transportes</span>
+    <a href="#inicio" className={`${styles.logo} ${className}`} aria-label="THV Transportes — início">
+      <img src={logoUrl} alt="THV Transportes" className={styles.img} />
     </a>
   );
 }
