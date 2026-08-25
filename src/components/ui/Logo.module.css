@@ -1,18 +1,47 @@
 .logo {
   display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.9;
+  gap: 2px;
+}
+
+.mark {
+  position: relative;
+  display: inline-flex;
   align-items: center;
-  line-height: 1;
+  gap: 4px;
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: 1.65rem;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
 }
 
-.img {
-  height: 52px;
-  width: auto;
-  display: block;
+/* Tick de brasa — elemento proprietário, ao lado do wordmark */
+.tick {
+  width: 8px;
+  height: 8px;
+  background: var(--color-red-600);
+  display: inline-block;
+  margin-bottom: 0.7rem;
 }
 
-/* Variante clara: sobre fundos escuros (topo do Hero, rodapé).
-   Converte a logo colorida em branco monocromático, preservando a
-   transparência, para garantir a leitura do wordmark "mondel". */
-.light .img {
-  filter: brightness(0) invert(1);
+.sub {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  padding-left: 2px;
+}
+
+/* Variante clara: sobre fundos escuros (topo do Hero, rodapé) */
+.light .mark {
+  color: #fff;
+}
+
+.light .sub {
+  color: rgba(255, 255, 255, 0.6);
 }

@@ -66,18 +66,12 @@
   gap: clamp(0.9rem, 1.6vw, 1.5rem);
 }
 
-/* ---------- Barra mobile (idioma + burger) ---------- */
-.mobileBar {
-  display: none;
-  align-items: center;
-  gap: 0.9rem;
-  margin-left: auto;
-}
-
 /* ---------- Burger ---------- */
 .burger {
+  display: none;
   color: #fff;
   padding: 6px;
+  margin-left: auto;
 }
 
 .scrolled .burger {
@@ -132,19 +126,10 @@
 }
 
 /* ---------- Responsivo ---------- */
-@media (min-width: 901px) {
-  .mobileBar {
-    display: none;
-  }
-}
-
 @media (max-width: 900px) {
   .navDesktop,
   .actions {
     display: none;
-  }
-  .mobileBar {
-    display: inline-flex;
   }
   .burger {
     display: inline-flex;

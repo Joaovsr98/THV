@@ -1,27 +1,28 @@
-import { useContent } from '../../i18n/LanguageContext.jsx';
 import styles from './Logo.module.css';
-import logoUrl from '../../assets/logo/mondel-group.webp';
 
 /* ---------------------------------------------------------------------
-   LOGO — arquivo oficial (src/assets/logo/mondel-group.webp)
+   LOGO — wordmark provisório da THV (texto).
+   Enquanto não recebemos o logo oficial em alta, usamos um wordmark
+   tipográfico industrial: "THV" pesado + "TRANSPORTES" em mono, com o
+   tick de brasa (elemento proprietário). Fácil de trocar depois.
 
-   variant="dark"  → logo colorida (uso sobre fundos claros)
-   variant="light" → logo em branco monocromático (uso sobre fundos
-                     escuros, como o topo do Hero e o rodapé), garantindo
-                     leitura do wordmark "mondel".
+   variant="light" → sobre fundos escuros (Hero, rodapé)
+   variant="dark"  → sobre fundos claros (header com scroll)
    --------------------------------------------------------------------- */
 
 export function Logo({ variant = 'dark', className = '' }) {
-  const pt = useContent();
   const isLight = variant === 'light';
-
   return (
     <a
       href="#inicio"
       className={`${styles.logo} ${isLight ? styles.light : ''} ${className}`}
-      aria-label={pt.ui.homeAria}
+      aria-label="THV Transportes — início"
     >
-      <img src={logoUrl} alt="Mondel Group" className={styles.img} />
+      <span className={styles.mark}>
+        THV
+        <i className={styles.tick} aria-hidden="true" />
+      </span>
+      <span className={styles.sub}>Transportes</span>
     </a>
   );
 }

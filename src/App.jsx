@@ -3,8 +3,6 @@ import { useLang } from './i18n/LanguageContext.jsx';
 
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
-import WhatsAppFloat from './components/layout/WhatsAppFloat.jsx';
-import LanguageGate from './components/layout/LanguageGate.jsx';
 
 import Hero from './components/sections/Hero.jsx';
 import Travessia from './components/sections/Travessia.jsx';
@@ -39,8 +37,6 @@ export default function App() {
         <Contato />
       </main>
       <Footer />
-      <WhatsAppFloat />
-      <LanguageGate />
     </>
   );
 }

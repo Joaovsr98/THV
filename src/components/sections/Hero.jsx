@@ -1,117 +1,104 @@
-import { FileText, MessageCircle } from 'lucide-react';
-import { useContent } from '../../i18n/LanguageContext.jsx';
-import { whatsappLink } from '../../utils/contactLinks.js';
-import { useMediaQuery } from '../../hooks/useMediaQuery.js';
+import { FileText, ArrowRight } from 'lucide-react';
 import Button from '../ui/Button.jsx';
 import styles from './Hero.module.css';
 
-export function Hero() {
-  const pt = useContent();
-  const { hero } = pt;
-  const reduce = useMediaQuery('(prefers-reduced-motion: reduce)');
+/* ---------------------------------------------------------------------
+   HERO — THV Transportes
+   Território: aço + força + precisão. Sem cartografia, sem rota, sem Andes.
+   Elementos proprietários: bobina de aço (motivo industrial) + a
+   "linha de carga" (régua de engenharia) que nasce aqui e segue no site.
+   Copy factual: siderúrgica, desde 1987. Nenhum número inventado.
+   --------------------------------------------------------------------- */
 
+// Bobina de aço vista de topo — anéis concêntricos recortados à direita.
+const COIL_RINGS = Array.from({ length: 15 }, (_, i) => 300 - i * 19);
+
+// Régua da "linha de carga": marca curta a cada 30px, longa (com nível) a cada 180px.
+const LOADLINE_TICKS = Array.from({ length: 49 }, (_, i) => i * 30);
+
+export function Hero() {
   return (
     <section id="inicio" className={styles.hero}>
-      {/* Fundo: foto dos Andes (marca d'água) + navy + cartografia + linha-rota da marca */}
       <div className={styles.bg} aria-hidden="true">
-        <div className={styles.photo} />
-        <div className={styles.photoScrim} />
+        <div className={styles.grain} />
 
-        <svg className={styles.map} viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-          <g className={styles.contours}>
-            <path d="M-50 240 C 260 180, 520 300, 820 220 S 1300 120, 1500 210" />
-            <path d="M-50 350 C 300 300, 560 420, 900 320 S 1320 240, 1500 320" />
-            <path d="M-50 480 C 320 440, 620 560, 980 440 S 1340 380, 1500 450" />
-            <path d="M-50 630 C 300 600, 640 700, 1020 600 S 1360 560, 1500 620" />
+        {/* Motivo: bobina de aço (end-on), grande e recortada no canto direito */}
+        <svg className={styles.coil} viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+          <g className={styles.coilRings}>
+            {COIL_RINGS.map((r, i) => (
+              <circle key={r} cx="470" cy="300" r={r} className={i === 4 ? styles.coilEmber : ''} />
+            ))}
           </g>
-          {/* Rota logística internacional — nasce atrás do conteúdo e sobe ao canto superior direito */}
-          <path
-            id="heroRoute"
-            className={styles.route}
-            d="M 700 744 C 872 694, 1000 610, 1132 520 C 1268 428, 1356 350, 1476 244"
-          />
-
-          {/* Brilho no ponto de destino (chegada do caminhão) */}
-          <circle className={styles.destGlow} cx="1476" cy="244" r="9" />
-
-          {/* Pontos da rota — pulso discreto */}
-          <g className={styles.points}>
-            <circle cx="700" cy="744" r="4" />
-            <circle cx="1132" cy="520" r="5" />
-            <circle cx="1476" cy="244" r="4.5" />
-          </g>
-
-          {/* Caminhão percorrendo a rota em intervalos */}
-          <g className={styles.truck} transform={reduce ? 'translate(700 744)' : undefined}>
-            <g className={styles.truckShape}>
-              <rect className={styles.truckBox} x="-9" y="-4" width="12" height="8" rx="1.5" />
-              <rect className={styles.truckCab} x="3" y="-3" width="6" height="7" rx="1" />
-              <circle className={styles.truckWheel} cx="-5" cy="5" r="1.6" />
-              <circle className={styles.truckWheel} cx="5.5" cy="5" r="1.6" />
-            </g>
-            {!reduce && (
-              <>
-                <animateMotion
-                  dur="18s"
-                  repeatCount="indefinite"
-                  rotate="auto"
-                  keyPoints="0;1;1"
-                  keyTimes="0;0.62;1"
-                  calcMode="spline"
-                  keySplines="0.45 0 0.55 1;0 0 1 1"
-                >
-                  <mpath href="#heroRoute" />
-                </animateMotion>
-                <animate
-                  attributeName="opacity"
-                  dur="18s"
-                  repeatCount="indefinite"
-                  keyTimes="0;0.02;0.62;0.68;0.73;1"
-                  values="0;1;1;1;0;0"
-                  calcMode="linear"
-                />
-              </>
-            )}
-          </g>
+          <circle cx="470" cy="300" r="10" className={styles.coilCore} />
         </svg>
+
         <div className={styles.vignette} />
       </div>
 
       <div className={`container ${styles.inner}`}>
-        <span className={styles.eyebrow}>{hero.eyebrow}</span>
-        <h1 className={styles.title}>{hero.title}</h1>
-        <p className={styles.subtitle}>{hero.subtitle}</p>
+        <span className={styles.eyebrow}>
+          <i className={styles.tick} aria-hidden="true" />
+          Transporte rodoviário de cargas siderúrgicas · Desde 1987
+        </span>
+
+        <h1 className={styles.title}>
+          Força que move
+          <br />a indústria.
+        </h1>
+
+        <p className={styles.subtitle}>
+          Especialistas no transporte de cargas siderúrgicas — aços, tubos e insumos — para a
+          indústria brasileira desde 1987.
+        </p>
 
         <div className={styles.ctas}>
           <Button href="#cotacao" variant="primary" size="lg" icon={FileText}>
-            {hero.ctaPrimary}
+            Solicitar cotação
           </Button>
-          <Button
-            href={whatsappLink(pt.whatsappFloat.message)}
-            variant="ghost"
-            size="lg"
-            icon={MessageCircle}
-            external
-          >
-            {hero.ctaSecondary}
+          <Button href="#empresa" variant="ghost" size="lg" icon={ArrowRight}>
+            Conheça a THV
           </Button>
         </div>
 
-        <dl className={styles.stats}>
-          {hero.stats.map((s) => (
-            <div key={s.label} className={styles.stat}>
-              <dt className={styles.statValue}>{s.value}</dt>
-              <dd className={styles.statLabel}>{s.label}</dd>
-            </div>
-          ))}
-        </dl>
+        {/* Faixa factual — só fatos confirmados na auditoria (nada de número inventado) */}
+        <ul className={styles.facts}>
+          <li>
+            <span className={styles.factValue}>1987</span>
+            <span className={styles.factLabel}>Início das atividades</span>
+          </li>
+          <li>
+            <span className={styles.factValue}>5</span>
+            <span className={styles.factLabel}>Estados com presença</span>
+          </li>
+          <li>
+            <span className={styles.factValue}>Siderúrgica</span>
+            <span className={styles.factLabel}>Carga especializada</span>
+          </li>
+        </ul>
       </div>
 
-      <a href="#travessia" className={styles.scroll} aria-label={pt.ui.scrollAria}>
-        <span className={styles.mouse} aria-hidden="true">
-          <span className={styles.wheel} />
-        </span>
-      </a>
+      {/* Linha de carga — assinatura proprietária da THV, nasce no Hero */}
+      <div className={styles.loadline} aria-hidden="true">
+        <svg className={styles.loadlineSvg} viewBox="0 0 1440 44" preserveAspectRatio="none">
+          <line x1="0" y1="30" x2="1440" y2="30" className={styles.loadlineBase} />
+          {LOADLINE_TICKS.map((x) => {
+            const major = x % 180 === 0;
+            return (
+              <line
+                key={x}
+                x1={x}
+                x2={x}
+                y1={major ? 14 : 22}
+                y2="30"
+                className={major ? styles.tickMajor : styles.tickMinor}
+              />
+            );
+          })}
+          {/* Marcador de brasa correndo sobre a régua */}
+          <circle cx="252" cy="30" r="4" className={styles.loadlineEmber} />
+        </svg>
+        <span className={styles.loadlineLabel}>Linha de carga</span>
+      </div>
     </section>
   );
 }

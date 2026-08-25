@@ -4,7 +4,6 @@ import { useContent } from '../../i18n/LanguageContext.jsx';
 import { useScrolled } from '../../hooks/useMediaQuery.js';
 import Logo from '../ui/Logo.jsx';
 import Button from '../ui/Button.jsx';
-import LangSwitch from '../ui/LangSwitch.jsx';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -36,25 +35,19 @@ export function Header() {
         </nav>
 
         <div className={styles.actions}>
-          <LangSwitch variant={scrolled ? 'dark' : 'light'} />
           <Button href="#cotacao" variant="primary" size="md" icon={FileText}>
-            {pt.hero.ctaPrimary}
+            Solicitar cotação
           </Button>
         </div>
 
-        {/* Mobile: idioma sempre visível na barra, ao lado do menu — no
-            painel ele ficava escondido atrás do hambúrguer. */}
-        <div className={styles.mobileBar}>
-          <LangSwitch variant={scrolled ? 'dark' : 'light'} />
-          <button
-            className={styles.burger}
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? pt.ui.menuClose : pt.ui.menuOpen}
-            aria-expanded={open}
-          >
-            {open ? <X size={26} /> : <Menu size={26} />}
-          </button>
-        </div>
+        <button
+          className={styles.burger}
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? pt.ui.menuClose : pt.ui.menuOpen}
+          aria-expanded={open}
+        >
+          {open ? <X size={26} /> : <Menu size={26} />}
+        </button>
       </div>
 
       {/* Menu mobile */}
