@@ -15,7 +15,7 @@
 
 .head {
   max-width: 46ch;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .eyebrow {
@@ -58,13 +58,27 @@
 /* ---------- Layout: texto/unidades à esquerda, mapa à direita ---------- */
 .grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
+  grid-template-columns: 0.82fr 1.18fr;
+  grid-template-areas:
+    'head map'
+    'units map';
+  gap: clamp(1rem, 2.5vw, 1.75rem) clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
 }
 
-.left {
+.headBlock {
+  grid-area: head;
   min-width: 0;
+}
+
+.unitsBlock {
+  grid-area: units;
+  min-width: 0;
+}
+
+.mapWrap {
+  grid-area: map;
+  align-self: center;
 }
 
 /* ---------- Mapa ---------- */
@@ -76,58 +90,87 @@
 .map {
   width: 100%;
   height: auto;
-  max-height: 500px;
+  max-height: 580px;
   overflow: visible;
   display: block;
   margin-inline: auto;
 }
 
-/* Chapa de aço — precisa contrastar com o fundo (#0c1330) para ler a silhueta */
+/* Chapa de aço — silhueta do Brasil (dentro do grupo scale(0.1), então
+   stroke-width é multiplicado por 0.1 no render). */
 .plate {
-  fill: #22335f;
-  stroke: none;
-}
-
-.plateEdge {
-  fill: none;
+  fill: url(#thvPlate);
   stroke: #6f8bc0;
-  stroke-width: 2;
+  stroke-width: 34;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 10px rgba(42, 92, 208, 0.25));
+  filter: drop-shadow(0 0 90px rgba(42, 92, 208, 0.35));
 }
 
-/* Rotas */
+/* Rotas — malha logística (linha base + fluxo tracejado) */
 .edge {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.28);
-  stroke-width: 1.6;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 3;
   stroke-linecap: round;
-  transition: stroke 0.25s var(--ease), opacity 0.25s var(--ease);
+  transition: stroke 0.25s var(--ease);
 }
 
-.edgeOn {
+.flow {
+  fill: none;
   stroke: var(--color-red-500);
-  filter: drop-shadow(0 0 4px rgba(56, 195, 238, 0.5));
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 3 22;
+  opacity: 0.45;
+  transition: opacity 0.25s var(--ease);
+  animation: flow 3.2s linear infinite;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -25;
+  }
+}
+
+.edgeOn .edge {
+  stroke: rgba(56, 195, 238, 0.55);
+}
+
+.edgeOn .flow {
+  opacity: 1;
 }
 
 .edgeDim {
-  opacity: 0.25;
+  opacity: 0.28;
 }
 
 /* Caminhão */
 .truck {
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
 }
 
-.truckBox,
+.truckBody {
+  fill: #e8eef6;
+}
+
 .truckCab {
-  fill: #fff;
+  fill: #cfe0f2;
+}
+
+.truckStripe {
+  fill: var(--color-red-500);
+  opacity: 0.85;
+}
+
+.truckWindow {
+  fill: #0c1330;
+  opacity: 0.75;
 }
 
 .wheel {
   fill: var(--color-navy-950);
-  stroke: #fff;
-  stroke-width: 0.6;
+  stroke: #e8eef6;
+  stroke-width: 0.5;
 }
 
 /* ---------- Nós ---------- */
@@ -143,7 +186,7 @@
 .dot {
   fill: var(--color-red-500);
   stroke: #0c1330;
-  stroke-width: 2;
+  stroke-width: 4;
   transition: transform 0.2s var(--ease-weight, ease);
   transform-box: fill-box;
   transform-origin: center;
@@ -153,9 +196,17 @@
   fill: #fff;
 }
 
+/* Anel fino do hub (SP) */
+.ring {
+  fill: none;
+  stroke: var(--color-red-500);
+  stroke-width: 2.5;
+  opacity: 0.9;
+}
+
 .beacon {
   fill: var(--color-red-500);
-  opacity: 0.25;
+  opacity: 0.22;
   transform-box: fill-box;
   transform-origin: center;
   animation: pulse 3s ease-in-out infinite;
@@ -164,26 +215,26 @@
 @keyframes pulse {
   0%,
   100% {
-    transform: scale(0.8);
+    transform: scale(0.7);
     opacity: 0.28;
   }
   50% {
-    transform: scale(1.3);
-    opacity: 0.1;
+    transform: scale(1.25);
+    opacity: 0.08;
   }
 }
 
 .node:hover .dot,
 .node:focus .dot,
 .nodeActive .dot {
-  transform: scale(1.35);
+  transform: scale(1.3);
 }
 
 .uf {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 26px;
   font-weight: 600;
-  fill: rgba(255, 255, 255, 0.85);
+  fill: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.06em;
   pointer-events: none;
 }
@@ -191,18 +242,15 @@
 /* ---------- Painel de unidades ---------- */
 .count {
   display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  padding-bottom: 0.75rem;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  align-items: center;
+  gap: 0.85rem;
 }
 
 .countValue {
   font-family: var(--font-brand);
   font-weight: 800;
-  font-size: 2.4rem;
-  line-height: 1;
+  font-size: 2.8rem;
+  line-height: 0.9;
   color: #fff;
 }
 
@@ -210,6 +258,7 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
+  line-height: 1.4;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
 }
@@ -234,10 +283,31 @@
 }
 
 .unitHead {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 0.6rem;
   flex-wrap: wrap;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Chevron do accordion — só no mobile */
+.chevron {
+  margin-left: 0.2rem;
+  color: rgba(255, 255, 255, 0.45);
+  transition: transform 0.25s var(--ease);
+  display: none;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
 }
 
 .badge {
@@ -320,15 +390,41 @@
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-areas:
+      'head'
+      'map'
+      'units';
+    gap: 1.5rem;
+  }
+  .mapWrap {
+    align-self: stretch;
   }
   .map {
-    max-height: 420px;
+    max-height: 460px;
+  }
+
+  /* Accordion por estado: cidades colapsadas até tocar */
+  .chevron {
+    display: inline-flex;
+  }
+  .cities {
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s var(--ease), opacity 0.25s var(--ease),
+      margin-top 0.3s var(--ease);
+  }
+  .open .cities {
+    max-height: 240px;
+    margin-top: 0.55rem;
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .beacon {
+  .beacon,
+  .flow {
     animation: none;
   }
 }
