@@ -1,115 +1,358 @@
-# Mondel Group — Site Institucional
+# THV Transportes — Site Institucional
 
-Site institucional premium para a **Mondel Group** (Mondel Logística S.A.), operadora de transporte internacional de cargas no Cone Sul desde 1989.
+Redesign e desenvolvimento de uma experiência digital para a **THV Transportes**, empresa brasileira com atuação histórica no transporte rodoviário de cargas e forte presença no segmento siderúrgico.
 
-Construído em **React + Vite + JavaScript + CSS Modules**, 100% responsivo, com SEO básico, animações suaves e foco em geração de contatos comerciais.
+O projeto transforma uma presença institucional tradicional em uma interface moderna, responsiva e orientada à apresentação da operação, serviços e geração de contatos comerciais.
 
----
-
-## Como rodar (Windows)
-
-Pré-requisito: ter o **Node.js 18+** instalado (https://nodejs.org).
-
-Abra o terminal (PowerShell ou CMD) na pasta do projeto e rode:
-
-    npm install      # instala as dependências (só na primeira vez)
-    npm run dev      # inicia o servidor de desenvolvimento
-
-Depois abra o endereço que aparecer no terminal (geralmente http://localhost:5173).
-
-Outros comandos:
-
-    npm run build    # gera a versão de produção na pasta /dist
-    npm run preview  # pré-visualiza a build de produção
+Desenvolvido com **React + Vite + JavaScript + CSS Modules**.
 
 ---
 
-## Deploy (Vercel — recomendado, gratuito)
+## 🌐 Projeto online
 
-1. Suba este projeto para um repositório no GitHub.
-2. Em https://vercel.com, clique em Add New > Project e importe o repositório.
-3. A Vercel detecta o Vite automaticamente. É só confirmar e publicar.
+### ➜ https://thv-umber.vercel.app/
 
-Não é necessário configurar nada — não há banco de dados, login ou variáveis de ambiente.
-
----
-
-## Onde editar cada coisa
-
-O projeto foi organizado para ser fácil de editar, sem mexer nos componentes.
-
-| Quero mudar...                        | Edite o arquivo               |
-|---------------------------------------|-------------------------------|
-| Textos do site (títulos, frases)      | src/content/pt.js             |
-| Contatos (WhatsApp, e-mail, redes)    | src/data/empresa.js           |
-| Serviços (cartões)                    | src/data/servicos.js          |
-| Escritórios / endereços               | src/data/oficinas.js          |
-| Frota (veículos + fotos)              | src/data/frota.js             |
-| Depoimentos e FAQ                     | src/data/depoimentos.js       |
-| Cores e fontes (identidade visual)    | src/styles/variables.css      |
-
-### Trocar o logo
-
-O logo entra por um "slot" pronto. Quando tiver o arquivo oficial (idealmente .svg, ou .png com fundo transparente):
-
-1. Coloque o arquivo em src/assets/logo/ (ex.: mondel-group.svg).
-2. Abra src/components/ui/Logo.jsx e siga o comentário no topo do arquivo: descomente a linha de import do logo e troque o placeholder pela tag <img>.
-
-Enquanto o arquivo oficial não é inserido, o site mostra um placeholder tipográfico neutro (não imita o símbolo da marca).
-
-### Inserir as fotos da frota
-
-1. Coloque as imagens em src/assets/images/frota/.
-2. Em src/data/frota.js, importe cada imagem no topo e aponte o campo "image" para ela. Exemplo:
-
-    import carretaBau from '../assets/images/frota/carreta-bau.jpg';
-    // ...
-    { id: 'carreta-bau', nome: 'Carreta Baú', specs: '...', icon: 'Truck', image: carretaBau },
-
-Enquanto não houver foto (image: null), um placeholder estilizado é exibido.
+> Acesse a versão publicada para conhecer a experiência completa.  
+> O projeto foi desenvolvido e otimizado para desktop, tablet e dispositivos móveis.
 
 ---
 
-## Estrutura do projeto
+## Sobre o projeto
 
-    src/
-    ├── assets/          Imagens e logo
-    ├── components/
-    │   ├── layout/      Header, Footer, WhatsApp flutuante
-    │   ├── ui/          Componentes reutilizáveis (Button, Logo, SectionTitle)
-    │   └── sections/    Seções da página (Hero, Serviços, Frota...)
-    ├── content/         Textos centralizados (pt.js) — pronto para i18n
-    ├── data/            Dados estruturados (serviços, contatos, frota...)
-    ├── hooks/           useReveal (animações), useMediaQuery
-    ├── styles/          Design tokens e estilos globais
-    ├── utils/           Links de contato e registro de ícones
-    ├── App.jsx          Montagem das seções
-    └── main.jsx         Ponto de entrada
+A proposta foi modernizar a apresentação digital da THV preservando características reconhecíveis de sua identidade.
 
----
+A direção visual combina:
 
-## Preparado para outros idiomas
+**indústria + aço + logística + engenharia + movimento**
 
-Todos os textos ficam em src/content/pt.js. Para adicionar espanhol/inglês no futuro, basta duplicar esse arquivo (ex.: es.js) e trocar a importação — sem reescrever os componentes.
+A identidade utiliza tons de azul profundo e ciano inspirados na comunicação histórica da empresa, reinterpretados em uma interface contemporânea.
 
----
+Mais do que reproduzir o site institucional anterior, o projeto reorganiza a informação em uma jornada digital:
 
-## Funcionalidades
-
-- Botão flutuante de WhatsApp com mensagem pronta
-- Formulário de cotação que monta a mensagem e abre no WhatsApp comercial
-- Links clicáveis: WhatsApp, telefone, e-mail, Instagram, LinkedIn
-- Google Maps integrado (sem necessidade de API key)
-- Animações on-scroll (Intersection Observer), respeitando prefers-reduced-motion
-- SEO: meta tags, Open Graph, Schema.org, robots.txt, sitemap.xml
-- 100% responsivo (mobile-first)
+```text
+Apresentação
+      ↓
+História
+      ↓
+Serviços
+      ↓
+Presença no Brasil
+      ↓
+Operação e estrutura
+      ↓
+Segurança
+      ↓
+Cotação
+      ↓
+Contato
+```
 
 ---
 
-## Checklist antes de publicar
+## ✨ Principais funcionalidades
 
-- [ ] Inserir o logo oficial em src/assets/logo/
-- [ ] Adicionar as fotos reais da frota
-- [ ] Trocar o domínio nos arquivos de SEO (index.html, public/sitemap.xml, public/robots.txt)
-- [ ] Adicionar uma imagem og-image.jpg em public/ (1200x630) para compartilhamento em redes
-- [ ] Conferir todos os textos em src/content/pt.js
+### 🏭 Hero industrial
+
+A abertura do projeto foi desenvolvida especificamente para comunicar a relação da THV com transporte, indústria e produtos siderúrgicos.
+
+A composição utiliza elementos gráficos, movimento e linguagem visual inspirada em engenharia e estruturas metálicas.
+
+---
+
+### 🕐 Timeline institucional
+
+A história da empresa é apresentada através de uma timeline interativa.
+
+No desktop, os marcos seguem uma leitura cronológica horizontal.
+
+No mobile, a experiência é reorganizada verticalmente para preservar legibilidade e navegação.
+
+As animações acompanham o avanço pela seção e respeitam a preferência `prefers-reduced-motion`.
+
+---
+
+### 🚛 Serviços especializados
+
+A área de serviços apresenta categorias relacionadas à operação da empresa, incluindo:
+
+- Aços Longos
+- Aços Planos
+- Aços não Planos
+- Transporte de Insumos
+- Tubos de Concreto
+- Tubos de Aço
+- Produtos Siderúrgicos em Geral
+
+Os componentes foram desenvolvidos para comunicar uma linguagem mais industrial e técnica do que cards convencionais de uma transportadora.
+
+---
+
+### 🇧🇷 Mapa de atuação interativo
+
+Uma das principais experiências do projeto é a representação visual da presença da THV no Brasil.
+
+O componente foi desenvolvido utilizando **SVG + React + CSS**, sem depender de bibliotecas pesadas de mapas.
+
+A experiência inclui:
+
+- representação vetorial do Brasil;
+- estados com presença institucional;
+- pontos interativos;
+- rotas logísticas;
+- destaque sincronizado entre mapa e lista;
+- animações;
+- navegação por mouse e teclado;
+- adaptação para dispositivos móveis;
+- suporte a `prefers-reduced-motion`.
+
+O mapa funciona não apenas como elemento visual, mas como uma forma de comunicar escala e estrutura operacional.
+
+---
+
+### 🔒 Segurança e tecnologia
+
+O projeto possui uma área dedicada à apresentação de aspectos relacionados à segurança e estrutura tecnológica da operação.
+
+A seção mantém a mesma linguagem industrial do restante da experiência e evita quebrar a identidade visual com componentes genéricos.
+
+---
+
+### 📋 Cotação estruturada
+
+A área comercial possui formulário de cotação organizado para reduzir atrito no preenchimento.
+
+Os dados são agrupados de forma lógica, incluindo informações como:
+
+```text
+Origem + Destino
+
+Nome + Empresa
+
+E-mail + Telefone
+```
+
+Campos obrigatórios possuem indicação visual e a interface mantém labels permanentemente visíveis para melhorar clareza e acessibilidade.
+
+---
+
+## 🎨 Identidade visual
+
+A interface foi construída sobre uma linguagem própria para o projeto:
+
+- azul profundo como cor institucional;
+- ciano como destaque operacional;
+- branco e tons metálicos para contraste;
+- elementos inspirados em aço e engenharia;
+- linhas técnicas;
+- marcadores;
+- microinterações;
+- movimento associado à logística.
+
+O objetivo foi preservar reconhecimento da identidade da THV sem simplesmente reproduzir a estética do site institucional anterior.
+
+---
+
+## 🛠️ Tecnologias
+
+- React
+- Vite
+- JavaScript
+- CSS Modules
+- Lucide React
+- SVG
+- HTML5
+- CSS3
+- Git
+- GitHub
+- Vercel
+
+---
+
+## 🧩 Arquitetura
+
+```text
+src/
+├── assets/              Imagens e recursos visuais
+├── components/
+│   ├── layout/          Header, Footer e estrutura global
+│   ├── ui/              Componentes reutilizáveis
+│   └── sections/        Seções da experiência
+├── content/             Conteúdo institucional
+├── data/                Serviços, unidades e dados estruturados
+├── hooks/               Hooks reutilizáveis
+├── styles/              Design tokens e estilos globais
+├── utils/               Funções auxiliares
+├── App.jsx              Composição da aplicação
+└── main.jsx             Bootstrap da aplicação
+```
+
+---
+
+## ⚙️ Decisões técnicas
+
+### Componentização
+
+As principais áreas da interface foram desenvolvidas como componentes independentes, facilitando manutenção e evolução.
+
+### Dados separados da apresentação
+
+Serviços, unidades e outros conteúdos estruturados são mantidos fora dos componentes sempre que possível.
+
+Isso reduz acoplamento entre conteúdo e interface.
+
+### CSS Modules
+
+Os estilos das seções são isolados através de CSS Modules, reduzindo conflitos e mantendo a organização visual do projeto.
+
+### SVG interativo
+
+Elementos gráficos mais específicos, principalmente relacionados ao mapa operacional, utilizam SVG para manter:
+
+- nitidez em diferentes resoluções;
+- baixo peso;
+- controle das animações;
+- interatividade;
+- responsividade.
+
+### Movimento com propósito
+
+As animações foram utilizadas para reforçar conceitos de:
+
+**rota · transporte · progresso · operação**
+
+e não apenas como decoração.
+
+O projeto também respeita:
+
+```css
+prefers-reduced-motion
+```
+
+para usuários que optam por reduzir animações.
+
+---
+
+## 📱 Responsividade
+
+O projeto foi desenvolvido e revisado em diferentes larguras de viewport.
+
+A interface reorganiza elementos como:
+
+- navegação;
+- timeline;
+- serviços;
+- mapa;
+- informações institucionais;
+- formulário de cotação.
+
+O objetivo é preservar a experiência visual sem simplesmente reduzir a versão desktop.
+
+---
+
+## 🔎 SEO e estrutura web
+
+A aplicação possui estrutura preparada para mecanismos de busca e compartilhamento, incluindo:
+
+- meta tags;
+- Open Graph;
+- dados estruturados;
+- `robots.txt`;
+- `sitemap.xml`;
+- HTML semântico.
+
+---
+
+## ⚡ Performance
+
+Recursos interativos foram desenvolvidos priorizando tecnologias nativas e componentes leves.
+
+No mapa, por exemplo, a experiência utiliza:
+
+```text
+React
++
+SVG
++
+CSS
+```
+
+em vez de adicionar bibliotecas completas de mapas apenas para uma representação institucional.
+
+---
+
+## 💻 Desenvolvimento local
+
+A versão pronta pode ser acessada diretamente online.
+
+Para desenvolvedores que desejarem analisar ou executar o código:
+
+### Requisitos
+
+- Node.js 18+
+- npm
+
+### Instalação
+
+```bash
+npm install
+```
+
+### Desenvolvimento
+
+```bash
+npm run dev
+```
+
+### Build de produção
+
+```bash
+npm run build
+```
+
+### Preview
+
+```bash
+npm run preview
+```
+
+---
+
+## 🚀 Deploy
+
+O projeto está publicado na Vercel e utiliza um fluxo simples de entrega:
+
+```text
+Desenvolvimento
+      ↓
+Git
+      ↓
+GitHub
+      ↓
+Vercel
+      ↓
+Produção
+```
+
+---
+
+## 📌 Status
+
+**Projeto funcional, responsivo e publicado.**
+
+O projeto continua recebendo refinamentos de interface e conteúdo conforme novas informações institucionais são validadas.
+
+---
+
+## 👨‍💻 Autor
+
+**João Victor dos Santos Rodrigues**
+
+Análise e Desenvolvimento de Sistemas
+
+**Desenvolvimento Web · React · JavaScript · Arquitetura Front-end · UX/UI**
+
+---
+
+# 🌐 Conheça o projeto
+
+### ➜ https://thv-umber.vercel.app/
