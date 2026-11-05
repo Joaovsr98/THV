@@ -102,8 +102,36 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Crédito de quem desenvolveu o site */
 .dev {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.62);
+  transition: color 0.2s var(--ease, ease);
+}
+
+.dev img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+  transition: box-shadow 0.25s var(--ease, ease), transform 0.25s var(--ease, ease);
+}
+
+.dev strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.dev:hover {
+  color: #fff;
+}
+
+.dev:hover img {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
 .bottomLinks {

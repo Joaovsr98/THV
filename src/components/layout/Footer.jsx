@@ -66,6 +66,18 @@ export function Footer() {
       <div className={styles.bottom}>
         <div className={`container ${styles.bottomInner}`}>
           <p>© {year} THV Transportes. Todos os direitos reservados.</p>
+          <a
+            href="https://www.instagram.com/inv.devs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.dev}
+            aria-label="Desenvolvido por INV Devs (Instagram @inv.devs)"
+          >
+            <img src="/inv-devs.webp" alt="" width="30" height="30" loading="lazy" />
+            <span>
+              Desenvolvido por <strong>INV Devs</strong>
+            </span>
+          </a>
         </div>
       </div>
     </footer>
