@@ -80,16 +80,20 @@ export function Footer() {
         </p>
         <div className={`container ${styles.bottomInner}`}>
           <p>© {year} THV Transportes. Todos os direitos reservados.</p>
+        </div>
+        <div className={styles.madeByRow}>
           <a
             href="https://www.instagram.com/inv.devs"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.dev}
-            aria-label="Desenvolvido por INV Devs (Instagram @inv.devs)"
+            aria-label={"Site feito por INV Devs (abre o Instagram @inv.devs)"}
           >
-            <img src="/inv-devs.webp" alt="" width="30" height="30" loading="lazy" />
-            <span>
-              Desenvolvido por <strong>INV Devs</strong>
+            <img src="/inv-devs.webp" alt="" width="56" height="56" loading="lazy" />
+            <span className={styles.devText}>
+              <span className={styles.devLabel}>Site feito por</span>
+              <span className={styles.devName}>INV Devs</span>
+              <span className={styles.devSub}>@inv.devs no Instagram →</span>
             </span>
           </a>
         </div>

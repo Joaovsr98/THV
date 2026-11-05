@@ -123,36 +123,80 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Crédito de quem desenvolveu o site */
+/* Crédito "Site feito por" — cartão no modelo do Bueno's House */
+.madeByRow {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem 2rem;
+}
+
 .dev {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.62);
-  transition: color 0.2s var(--ease, ease);
-}
-
-.dev img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
-  transition: box-shadow 0.25s var(--ease, ease), transform 0.25s var(--ease, ease);
-}
-
-.dev strong {
-  color: #fff;
-  font-weight: 700;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s var(--ease, ease), background-color 0.2s var(--ease, ease);
 }
 
 .dev:hover {
-  color: #fff;
+  border-color: rgba(34, 211, 238, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dev img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
+  transition: transform 0.25s var(--ease, ease), box-shadow 0.25s var(--ease, ease);
 }
 
 .dev:hover img {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 32px rgba(168, 85, 247, 0.55);
+}
+
+.devText {
+  text-align: left;
+  line-height: 1.25;
+}
+
+.devLabel {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.devName {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.devSub {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(103, 232, 249, 0.8);
+  transition: color 0.2s var(--ease, ease);
+}
+
+.dev:hover .devSub {
+  color: #a5f3fc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dev img {
+    transition: none;
+  }
+  .dev:hover img {
+    transform: none;
+  }
 }
 
 .bottomLinks {
