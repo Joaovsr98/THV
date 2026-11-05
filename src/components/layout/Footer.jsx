@@ -1,7 +1,11 @@
 import { Mail } from 'lucide-react';
 import { servicos } from '../../data/servicos.js';
 import Logo from '../ui/Logo.jsx';
+import { whatsappLink } from '../../utils/contactLinks.js';
 import styles from './Footer.module.css';
+
+// WhatsApp da INV Devs, que desenvolveu o site.
+const INV_DEVS_WHATSAPP = '5511925272694';
 
 /* ---------------------------------------------------------------------
    FOOTER — THV. Self-contained, só com fatos confirmados na auditoria
@@ -64,6 +68,16 @@ export function Footer() {
       </div>
 
       <div className={styles.bottom}>
+        <p className={`container ${styles.devCta}`}>
+          Gostou deste site?{' '}
+          <a
+            href={whatsappLink('Olá! Vi o site da THV Transportes feito pela INV Devs e quero saber mais.', INV_DEVS_WHATSAPP)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fale com a INV Devs no WhatsApp
+          </a>
+        </p>
         <div className={`container ${styles.bottomInner}`}>
           <p>© {year} THV Transportes. Todos os direitos reservados.</p>
           <a

@@ -87,6 +87,27 @@
   margin-top: 2px;
 }
 
+/* Chamada da INV Devs (quem fez o site). Contatos da empresa não mudam. */
+.devCta {
+  padding-block: 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.devCta a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--ease, ease);
+}
+
+.devCta a:hover {
+  color: #25d366;
+}
+
 /* ---------- Bottom bar ---------- */
 .bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
