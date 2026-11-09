@@ -149,14 +149,13 @@
 .dev img {
   width: 56px;
   height: 56px;
-  border-radius: 50%;
-  box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
-  transition: transform 0.25s var(--ease, ease), box-shadow 0.25s var(--ease, ease);
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 0.25s var(--ease, ease);
 }
 
 .dev:hover img {
   transform: scale(1.1);
-  box-shadow: 0 0 32px rgba(168, 85, 247, 0.55);
 }
 
 .devText {
@@ -192,11 +191,16 @@
 
 @media (prefers-reduced-motion: reduce) {
   .dev img {
-    transition: none;
-  }
-  .dev:hover img {
-    transform: none;
-  }
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  object-fit: contain;
+  transition: transform 0.25s var(--ease, ease);
+}
+
+.dev:hover img {
+  transform: scale(1.1);
+}
 }
 
 .bottomLinks {

@@ -4,7 +4,7 @@ import Logo from '../ui/Logo.jsx';
 import { whatsappLink } from '../../utils/contactLinks.js';
 import styles from './Footer.module.css';
 
-// WhatsApp da INV Devs, que desenvolveu o site.
+// WhatsApp da VN Bueno Digital, que desenvolveu o site.
 const INV_DEVS_WHATSAPP = '5511925272694';
 
 /* ---------------------------------------------------------------------
@@ -71,11 +71,11 @@ export function Footer() {
         <p className={`container ${styles.devCta}`}>
           Gostou deste site?{' '}
           <a
-            href={whatsappLink('Olá! Vi o site da THV Transportes feito pela INV Devs e quero saber mais.', INV_DEVS_WHATSAPP)}
+            href={whatsappLink('Olá! Vi o site da THV Transportes feito pela VN Bueno Digital e quero saber mais.', INV_DEVS_WHATSAPP)}
             target="_blank"
             rel="noopener noreferrer"
           >
-            Fale com a INV Devs no WhatsApp
+            Fale com a VN Bueno Digital no WhatsApp
           </a>
         </p>
         <div className={`container ${styles.bottomInner}`}>
@@ -87,12 +87,12 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.dev}
-            aria-label={"Site feito por INV Devs (abre o Instagram @inv.devs)"}
+            aria-label={"Site feito por VN Bueno Digital (abre o Instagram @inv.devs)"}
           >
-            <img src="/inv-devs.webp" alt="" width="56" height="56" loading="lazy" />
+            <img src="/vn-bueno-digital.png" alt="" width="56" height="56" loading="lazy" />
             <span className={styles.devText}>
               <span className={styles.devLabel}>Site feito por</span>
-              <span className={styles.devName}>INV Devs</span>
+              <span className={styles.devName}>VN Bueno Digital</span>
               <span className={styles.devSub}>@inv.devs no Instagram →</span>
             </span>
           </a>
