@@ -83,17 +83,17 @@ export function Footer() {
         </div>
         <div className={styles.madeByRow}>
           <a
-            href="https://www.instagram.com/inv.devs"
+            href="https://www.instagram.com/vnbuenodigital/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.dev}
-            aria-label={"Site feito por VN Bueno Digital (abre o Instagram @inv.devs)"}
+            aria-label={"Site feito por VN Bueno Digital (abre o Instagram @vnbuenodigital)"}
           >
             <img src="/vn-bueno-digital.png" alt="" width="56" height="56" loading="lazy" />
             <span className={styles.devText}>
               <span className={styles.devLabel}>Site feito por</span>
               <span className={styles.devName}>VN Bueno Digital</span>
-              <span className={styles.devSub}>@inv.devs no Instagram →</span>
+              <span className={styles.devSub}>@vnbuenodigital no Instagram →</span>
             </span>
           </a>
         </div>
