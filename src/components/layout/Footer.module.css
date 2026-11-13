@@ -178,6 +178,13 @@
   color: #fff;
 }
 
+.devSlogan {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #67e8f9, #60a5fa 45%, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
 .devSub {
   display: block;
   font-size: 0.75rem;

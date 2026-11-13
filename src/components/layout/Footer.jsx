@@ -93,6 +93,7 @@ export function Footer() {
             <span className={styles.devText}>
               <span className={styles.devLabel}>Site feito por</span>
               <span className={styles.devName}>VN Bueno Digital</span>
+              <span className={styles.devSlogan}>Seu presente do futuro.</span>
               <span className={styles.devSub}>@vnbuenodigital no Instagram →</span>
             </span>
           </a>
